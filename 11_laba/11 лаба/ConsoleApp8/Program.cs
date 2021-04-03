@@ -975,7 +975,7 @@ namespace ConsoleApp8
             Users user = (Users)formatter.Deserialize(fs);
             DarkCyanText("Количество пользователей: ");
             RedText(user.Logins.Count + "\n\n");
-            CyanText("Для подолжения нажмите любую клавишу...");
+            DarkCyanText("Для подолжения нажмите любую клавишу...");
             fs.Close();
         }
         private static void AddUser() // ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
