@@ -18,7 +18,7 @@ namespace ConsoleApp8
         /// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
         public static string current_login = string.Empty; // ДАННЫЙ ПОЛЬЗОВАТЕЛЬ СИСТЕМЫ
         public static string current_password = string.Empty; // ПАРОЛЬ ДАННОГО ПОЛЬЗОВАТЕЛЯ СИСТЕМЫ
-        public static bool user_changed = false; // ПЕРЕМЕННАЯ ДЛЯ ПРОВЕРКИ СМЕНЫ АДМИНИСТРАТОРА
+        public static bool admin_changed = false; // ПЕРЕМЕННАЯ ДЛЯ ПРОВЕРКИ СМЕНЫ АДМИНИСТРАТОРА
         
         private static void SystemLogin() // ВХОД В СИСТЕМУ
         {
@@ -127,7 +127,7 @@ namespace ConsoleApp8
                         {
                             UsersConfig();
                             //проверка
-                            if (user_changed==true)
+                            if (admin_changed==true)
                             {
                                 Choise_System = 0;
                             }
@@ -918,7 +918,7 @@ namespace ConsoleApp8
                             Console.ReadKey();
 
                             //проверка
-                            if (user_changed == true)
+                            if (admin_changed == true)
                             {
                                 Choise_System_Config = 0;
                             }
@@ -1059,7 +1059,7 @@ namespace ConsoleApp8
                             case 1:
                                 {
                                     fs.SetLength(0);
-                                    user_changed = true;
+                                    admin_changed = true;
                                     user.Logins.Remove(_login);
                                     user.Passwords.Remove(_password);
                                     formatter.Serialize(fs, user); // Сериализуем класс.
