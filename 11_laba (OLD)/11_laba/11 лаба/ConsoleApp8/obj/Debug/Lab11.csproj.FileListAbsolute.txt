@@ -1,0 +1,28 @@
+C:\Users\Сашка\source\repos\ConsoleApp8\ConsoleApp8\bin\Debug\ConsoleApp8.exe.config
+C:\Users\Сашка\source\repos\ConsoleApp8\ConsoleApp8\bin\Debug\ConsoleApp8.exe
+C:\Users\Сашка\source\repos\ConsoleApp8\ConsoleApp8\bin\Debug\ConsoleApp8.pdb
+C:\Users\Сашка\source\repos\ConsoleApp8\ConsoleApp8\obj\Debug\Lab11.csprojAssemblyReference.cache
+C:\Users\Сашка\source\repos\ConsoleApp8\ConsoleApp8\obj\Debug\Lab11.csproj.CoreCompileInputs.cache
+C:\Users\Сашка\source\repos\ConsoleApp8\ConsoleApp8\obj\Debug\ConsoleApp8.exe
+C:\Users\Сашка\source\repos\ConsoleApp8\ConsoleApp8\obj\Debug\ConsoleApp8.pdb
+C:\Users\Сашка\Desktop\Прога 1_3\Я (ДА КАК ЭТО ВООБЩЕ ВОЗМОЖНО)\11 лаба\ConsoleApp8\obj\Debug\Lab11.csprojAssemblyReference.cache
+C:\Users\Сашка\Desktop\Прога 1_3\Я (ДА КАК ЭТО ВООБЩЕ ВОЗМОЖНО)\11 лаба\ConsoleApp8\obj\Debug\Lab11.csproj.CoreCompileInputs.cache
+C:\Users\Сашка\Desktop\Прога 1_3\Я (ДА КАК ЭТО ВООБЩЕ ВОЗМОЖНО)\11 лаба\ConsoleApp8\obj\Debug\ConsoleApp8.exe
+C:\Users\Сашка\Desktop\Прога 1_3\Я (ДА КАК ЭТО ВООБЩЕ ВОЗМОЖНО)\11 лаба\ConsoleApp8\obj\Debug\ConsoleApp8.pdb
+C:\Users\Сашка\Desktop\Прога 1_3\Я (ДА КАК ЭТО ВООБЩЕ ВОЗМОЖНО)\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.exe.config
+C:\Users\Сашка\Desktop\Прога 1_3\Я (ДА КАК ЭТО ВООБЩЕ ВОЗМОЖНО)\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.exe
+C:\Users\Сашка\Desktop\Прога 1_3\Я (ДА КАК ЭТО ВООБЩЕ ВОЗМОЖНО)\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.pdb
+C:\Users\Сашка\Desktop\Защита ПО\11_laba\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.exe.config
+C:\Users\Сашка\Desktop\Защита ПО\11_laba\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.exe
+C:\Users\Сашка\Desktop\Защита ПО\11_laba\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.pdb
+C:\Users\Сашка\Desktop\Защита ПО\11_laba\11 лаба\ConsoleApp8\obj\Debug\Lab11.csprojAssemblyReference.cache
+C:\Users\Сашка\Desktop\Защита ПО\11_laba\11 лаба\ConsoleApp8\obj\Debug\Lab11.csproj.CoreCompileInputs.cache
+C:\Users\Сашка\Desktop\Защита ПО\11_laba\11 лаба\ConsoleApp8\obj\Debug\ConsoleApp8.exe
+C:\Users\Сашка\Desktop\Защита ПО\11_laba\11 лаба\ConsoleApp8\obj\Debug\ConsoleApp8.pdb
+C:\Users\Сашка\Desktop\Защита ПО\11_laba (OLD)\11_laba\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.exe.config
+C:\Users\Сашка\Desktop\Защита ПО\11_laba (OLD)\11_laba\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.exe
+C:\Users\Сашка\Desktop\Защита ПО\11_laba (OLD)\11_laba\11 лаба\ConsoleApp8\bin\Debug\ConsoleApp8.pdb
+C:\Users\Сашка\Desktop\Защита ПО\11_laba (OLD)\11_laba\11 лаба\ConsoleApp8\obj\Debug\Lab11.csprojAssemblyReference.cache
+C:\Users\Сашка\Desktop\Защита ПО\11_laba (OLD)\11_laba\11 лаба\ConsoleApp8\obj\Debug\Lab11.csproj.CoreCompileInputs.cache
+C:\Users\Сашка\Desktop\Защита ПО\11_laba (OLD)\11_laba\11 лаба\ConsoleApp8\obj\Debug\ConsoleApp8.exe
+C:\Users\Сашка\Desktop\Защита ПО\11_laba (OLD)\11_laba\11 лаба\ConsoleApp8\obj\Debug\ConsoleApp8.pdb
