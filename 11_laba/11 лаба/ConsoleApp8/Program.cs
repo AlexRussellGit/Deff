@@ -44,7 +44,7 @@ namespace ConsoleApp8
                         current_password = user.Passwords[i];
 
                         {// ЗАПИСЬ
-                            string s = "USER " + current_login + " LOGGED IN, AT " + DateTime.Now;
+                            string s = "USER " + current_login + " LOGGED IN AT " + DateTime.Now;
                             if (i == 0)
                             {
                                 s += " {ADMIN}";
@@ -886,8 +886,8 @@ namespace ConsoleApp8
             {
                 Console.Clear();
                 GreenText("Выбор действий над пользователем\n\n");
-                DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Посчёт пользователей\n3.Добавление пользователя\n4.Удаление пользователя\n0.Выход\n\n");
-                Choise_System_Config = ReadOnlyInt(0, 4);
+                DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Посчёт пользователей\n3.Добавление пользователя\n4.Удаление пользователя\n5.Просмотр логов пользователей\n0.Выход\n\n");
+                Choise_System_Config = ReadOnlyInt(0, 5);
                 switch (Choise_System_Config)
                 {
                     case 1:
@@ -922,6 +922,13 @@ namespace ConsoleApp8
                             {
                                 Choise_System_Config = 0;
                             }
+                            break;
+                        }
+                    case 5:
+                        {
+                            Console.Clear();
+                            ShowLogsUsers();
+                            Console.ReadKey();
                             break;
                         }
                     case 0: break;
@@ -1110,6 +1117,19 @@ namespace ConsoleApp8
                 }
                 fs.Close();
 
+            }
+        }
+        private static void ShowLogsUsers() // ЛОГИ ПОЛЬЗОВАТЕЛЕЙ
+        {
+            if (Admin_Check() == true)
+            {
+                GreenText("Показ логов пользователей\n\n");
+                FileStream stream = new FileStream("LOGS.txt", FileMode.OpenOrCreate);
+                StreamReader reader = new StreamReader(stream);
+                string str = reader.ReadToEnd();
+                stream.Close();
+                CyanText(str + "\n\n");
+                DarkCyanText("Для продолжения нажмите любую клавишу...");
             }
         }
 
