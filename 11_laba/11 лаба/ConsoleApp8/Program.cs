@@ -945,7 +945,7 @@ namespace ConsoleApp8
 
         ///ФУНКЦИИ АДМИНИСТРИРОВАНИЯ
         
-        private static void ShowUsers() // ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
+        private static void ShowUsers() // ПОКАЗ ПОЛЬЗОВАТЕЛЕЙ
         {
             GreenText("Показ пльзователей\n\n");
             try
@@ -989,7 +989,7 @@ namespace ConsoleApp8
         {
 
 
-            if (Admin_Check() == true)
+            if (Admin_Check())
             {
                 FileStream fs = new FileStream("Users.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -1039,7 +1039,7 @@ namespace ConsoleApp8
         }
         private static void DeleteUser() // УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
         {
-            if (Admin_Check() == true)
+            if (Admin_Check())
             {
                 GreenText("Удаление пользователя\n\n");
                 FileStream fs = new FileStream("Users.txt", FileMode.Open);
@@ -1121,7 +1121,7 @@ namespace ConsoleApp8
         }
         private static void ShowLogsUsers() // ЛОГИ ПОЛЬЗОВАТЕЛЕЙ
         {
-            if (Admin_Check() == true)
+            if (Admin_Check())
             {
                 GreenText("Показ логов пользователей\n\n");
                 FileStream stream = new FileStream("LOGS.txt", FileMode.OpenOrCreate);
