@@ -1167,7 +1167,7 @@ namespace ConsoleApp8
                 DarkCyanText("Для продолжения нажмите любую клавишу...");
             }
         }
-        private static void AdminRightsTransfer() // ЛОГИ ПОЛЬЗОВАТЕЛЕЙ
+        private static void AdminRightsTransfer() // ПЕРЕДАЧА ПРАВ
         {
             if (Admin_Check())
             {
@@ -1315,7 +1315,7 @@ namespace ConsoleApp8
                 key = Console.ReadKey(true);
 
                 // Ignore any key out of range.
-                if (((int)key.Key) >= 65 && ((int)key.Key <= 90))
+                if (((int)key.Key) >= 65 && ((int)key.Key <= 90) || ((int)key.Key) >= 48 && ((int)key.Key <= 57))
                 {
                     // Append the character to the password.
                     Password += key.KeyChar;
