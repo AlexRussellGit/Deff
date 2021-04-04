@@ -914,8 +914,8 @@ namespace ConsoleApp8
             {
                 Console.Clear();
                 GreenText("Выбор действий над пользователем\n\n");
-                DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Посчёт пользователей\n3.Добавление пользователя\n4.Удаление пользователя\n5.Просмотр логов пользователей\n0.Выход\n\n");
-                Choise_System_Config = ReadOnlyInt(0, 5);
+                DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Посчёт пользователей\n3.Добавление пользователя\n4.Удаление пользователя\n5.Просмотр логов пользователей\n6.Передача прав администрара\n0.Выход\n\n");
+                Choise_System_Config = ReadOnlyInt(0, 6);
                 switch (Choise_System_Config)
                 {
                     case 1:
@@ -959,6 +959,13 @@ namespace ConsoleApp8
                             Console.ReadKey();
                             break;
                         }
+                    case 6:
+                        {
+                            Console.Clear();
+                            AdminRightsTransfer();
+                            Console.ReadKey();
+                            break;
+                        }  
                     case 0: break;
                 }
             } while (Choise_System_Config != 0);
@@ -1158,6 +1165,69 @@ namespace ConsoleApp8
                 stream.Close();
                 CyanText(str + "\n\n");
                 DarkCyanText("Для продолжения нажмите любую клавишу...");
+            }
+        }
+        private static void AdminRightsTransfer() // ЛОГИ ПОЛЬЗОВАТЕЛЕЙ
+        {
+            if (Admin_Check())
+            {
+                GreenText("Передача прав Администрора\n\n");
+                FileStream fs = new FileStream("Users.txt", FileMode.Open);
+                BinaryFormatter formatter = new BinaryFormatter();
+                Users user = (Users)formatter.Deserialize(fs);
+                if (user.Logins.Count == 1)
+                {
+                    DarkRedText("Единственный пользователь не может передать права!\nДля прододжения нажмите любую клавишу...");
+                }
+                else
+                {
+                    CyanText("Пользователь: ");
+                    string _login = GetLogin();
+                    CyanText("Пароль Пользователя: ");
+                    string _password = GetPassword();
+                    if (current_login == _login && current_password == _password)
+                    {
+                        RedText("\nВы уже являетесь администратором\nДля прододжения нажмите любую клавишу...");
+                    }
+                    else
+                    {
+                        {
+                            try
+                            {
+                                bool user_absent = true;
+                                int NewAdmin=0;
+                                for (int i = 0; i < user.Logins.Count; i++)
+                                {
+                                    if (_login == user.Logins[i] & _password == user.Passwords[i])
+                                    {
+                                        user_absent = false;
+                                        NewAdmin = i;
+                                        break;
+                                    }
+                                }
+                                if (user_absent == true)
+                                {
+                                    DarkRedText("\nЛогин пользователя или пароль не верны! Для продолжения нажмите любую клавишу...");
+                                }
+                                else
+                                {
+                                    fs.SetLength(0);
+                                    user.Logins[0] = user.Logins[NewAdmin];
+                                    user.Passwords[0] = user.Passwords[NewAdmin];
+                                    user.Logins[NewAdmin] = current_login;
+                                    user.Passwords[NewAdmin] = current_password;
+                                    formatter.Serialize(fs, user); // Сериализуем класс.
+                                    DarkCyanText("\nПрава Переданы! Для продолжения нажмите любую клавишу...");
+                                }
+                            }
+                            catch
+                            {
+                                DarkRedText("\nПользователь не навйлен! Для продолжения нажмите любую клавишу...");
+                            }
+                        }
+                    }
+                }
+                fs.Close();
             }
         }
 
