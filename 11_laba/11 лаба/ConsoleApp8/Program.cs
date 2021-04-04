@@ -22,89 +22,117 @@ namespace ConsoleApp8
         
         private static void SystemLogin() // ВХОД В СИСТЕМУ
         {
-            GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
-            YellowText("Вход в систему\n\n");
-            try
-            {
-                FileStream fs = new FileStream("Users.txt", FileMode.Open);
-                BinaryFormatter formatter = new BinaryFormatter();
-                Users user = (Users)formatter.Deserialize(fs);
-                fs.Close();
-                CyanText("Пользователь: ");
-                string _login = Console.ReadLine();
-                CyanText("Пароль: ");
-                string _password = GetPassword();
-                for (int i = 0; i < user.Logins.Count; i++) // Ищем пользователя и проверяем правильность пароля.
+            int Choise_Login;
+            do{
+                Console.Clear();
+                admin_changed = false;
+                GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
+                YellowText("Войти в систему?\n\n1.Войти\n0.Завыршить работу\n\n");
+                Choise_Login = ReadOnlyInt(0, 1);    
+                switch(Choise_Login)
                 {
-                    if (user.Logins[i] == _login && user.Passwords[i] == _password)
-                    {
-                        Console.WriteLine();
-                        Console.Write("Вы вошли в систему!\nДля продолжения нажмите любую клавишу...");
-                        current_login = user.Logins[i];
-                        current_password = user.Passwords[i];
-
-                        {// ЗАПИСЬ
-                            string s = "USER " + current_login + " LOGGED IN AT " + DateTime.Now;
-                            if (i == 0)
-                            {
-                                s += " {ADMIN}";
-                            }
-                            System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
-                            writer.WriteLine(s);
-                            writer.Close();
-                        }
-
-                        Console.ReadKey();
-                        Console.Clear();
-                        TheSystem();
-                        break;
-                    }
-                    else if (user.Logins[i] == _login & _password != user.Passwords[i])
-                    {
-                        RedText("Неверный пароль!");
-                        Console.WriteLine();
-                        while (_password != user.Passwords[i])
+                    case 1:
                         {
-                            CyanText("Пользователь: ");
-                            _password = GetPassword();
-                            if (_password != user.Passwords[i])
+                            try
                             {
-                                RedText("Неверный пароль!");
-                                Console.WriteLine();
-                            }
-                            else
-                            {
-                                Console.WriteLine();
-                                Console.Write("Вы вошли в систему!\nДля продолжения нажмите любую клавишу...");
-                                current_login = user.Logins[i];
-                                current_password = user.Passwords[i];
-                                {// ЗАПИСЬ
-                                    string s = "USER " + current_login + " LOGGED IN AT " + DateTime.Now;
-                                    if (i == 0)
-                                    {
-                                        s += " {ADMIN}";
-                                    }
-                                    System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
-                                    writer.WriteLine(s);
-                                    writer.Close();
-                                }
-                                Console.ReadKey();
                                 Console.Clear();
-                                TheSystem();
-                            }
-                        }
-                        break;
-                    }
-                    else if (i == user.Logins.Count - 1)
-                    {
-                        Console.WriteLine();
-                        RedText("Пользователь " + _login + " не найден!\nПроизведен выход из приложения. Для продолжения нажмите любую клавишу...");
-                        Console.ReadKey();
-                    }
+                                GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
+                                YellowText("Вход в систему\n\n");
+                                FileStream fs = new FileStream("Users.txt", FileMode.Open);
+                                BinaryFormatter formatter = new BinaryFormatter();
+                                Users user = (Users)formatter.Deserialize(fs);
+                                fs.Close();
+                                CyanText("Пользователь: ");
+                                string _login = GetLogin();
+                                CyanText("Пароль: ");
+                                string _password = GetPassword();
+                                for (int i = 0; i < user.Logins.Count; i++) // Ищем пользователя и проверяем правильность пароля.
+                                {
+                                    if (user.Logins[i] == _login && user.Passwords[i] == _password)
+                                    {
+                                        Console.WriteLine();
+                                        Console.Write("Вы вошли в систему!\nДля продолжения нажмите любую клавишу...");
+                                        current_login = user.Logins[i];
+                                        current_password = user.Passwords[i];
 
+                                        {// ЗАПИСЬ
+                                            string s = "USER " + current_login + " LOGGED IN AT " + DateTime.Now;
+                                            if (i == 0)
+                                            {
+                                                s += " {ADMIN}";
+                                            }
+                                            System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
+                                            writer.WriteLine(s);
+                                            writer.Close();
+                                        }
+
+                                        Console.ReadKey();
+                                        Console.Clear();
+                                        TheSystem();
+                                        break;
+                                    }
+                                    else if (user.Logins[i] == _login & _password != user.Passwords[i])
+                                    {
+                                        RedText("\nНеверный пароль!\n");
+                                        int Counter_Wrong_Pass = 0;
+                                        while (_password != user.Passwords[i])
+                                        {
+                                            CyanText("Пароль: ");
+                                            _password = GetPassword();
+                                            if (_password != user.Passwords[i])
+                                            {
+                                                RedText("\nНеверный пароль!\n");
+                                                Counter_Wrong_Pass++;
+                                                if(Counter_Wrong_Pass==3)
+                                                {
+                                                    RedText("\nВы ввели пароль неверно более 3 раз\nДля продолдения нажмите любую клавишу...");
+                                                    Console.ReadKey();
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Console.WriteLine();
+                                                Console.Write("Вы вошли в систему!\nДля продолжения нажмите любую клавишу...");
+                                                current_login = user.Logins[i];
+                                                current_password = user.Passwords[i];
+                                                {// ЗАПИСЬ
+                                                    string s = "USER " + current_login + " LOGGED IN AT " + DateTime.Now;
+                                                    if (i == 0)
+                                                    {
+                                                        s += " {ADMIN}";
+                                                    }
+                                                    System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
+                                                    writer.WriteLine(s);
+                                                    writer.Close();
+                                                }
+                                                Console.ReadKey();
+                                                Console.Clear();
+                                                TheSystem();
+                                            }
+                                        }
+                                        break;
+                                    }
+                                    else if (i == user.Logins.Count - 1)
+                                    {
+                                        Console.WriteLine();
+                                        RedText("Пользователь " + _login + " не найден!\nДля продолжения нажмите любую клавишу...");
+                                        Console.ReadKey();
+                                    }
+
+                                }
+                            }
+                            catch { Console.WriteLine("Error acquired!"); return; }
+                            break;
+                        }
+                    case 0:
+                        {
+                            Console.Write("\n\nДля продолжения нажмите любую клавишу...");
+                            Console.ReadKey();
+                            break;
+                        }
                 }
-            }
-            catch { Console.WriteLine("Error acquired!"); return; }
+            }while(Choise_Login!=0);
 
         }
         private static void TheSystem() // СИСТЕМА ПОД ДАННОГО ПОЛЬЗОВАТЕЛЯ 
@@ -1005,7 +1033,7 @@ namespace ConsoleApp8
                 bool login_absent = true;
                 GreenText("Добавление нового пользователя\n\n");
                 CyanText("Пользователь: ");
-                string _login = Console.ReadLine();
+                string _login = GetLogin();
                 for (int i = 0; i < user.Logins.Count; i++)
                 {
                     if (_login == user.Logins[i])
@@ -1052,13 +1080,13 @@ namespace ConsoleApp8
                 else
                 {
                     CyanText("Пользователь: ");
-                    string _login = Console.ReadLine();
+                    string _login = GetLogin();
                     CyanText("Пароль Пользователя: ");
                     string _password = GetPassword();
                     if (current_login == _login && current_password == _password)
                     {
                         int Choise_Delete;
-                        RedText("\nВы уверены что хотите удалить Администатора?\nВ данном случае приложение прервётся (закроется) и роль администатора перейдёт следующему по спику пользователю\n\n");
+                        RedText("\nВы уверены что хотите удалить Администатора?\nВ данном случае система перезапустится и роль администатора перейдёт следующему по спику пользователю\n\n");
                         CyanText("1.Да\n2.Нет\n\n");
                         Choise_Delete = ReadOnlyInt(1, 2);
                         switch (Choise_Delete)
@@ -1139,10 +1167,31 @@ namespace ConsoleApp8
         {
             int value;
             bool ok = false;
+            ConsoleKeyInfo key;
             do
             {
                 CyanText("Введите значение: ");
-                string buf = Console.ReadLine();
+                string buf="";
+                
+                do
+                {
+                    key = Console.ReadKey(true);
+
+                    // Ignore any key out of range.
+                    if (((int)key.Key) >= 48 && ((int)key.Key <= 57))
+                    {
+                        // Append the character to the password.
+                        buf += key.KeyChar;
+                        DarkCyanText(key.KeyChar.ToString());
+                    }
+                    if (buf.Length > 5)
+                    {
+                        RedText("\t\t(допустимый разер не больше 5 символов)");
+                        break;
+                    }
+                    // Exit if Enter key is pressed.
+                } while (key.Key != ConsoleKey.Enter);
+                
                 ok = Int32.TryParse(buf, out value);
                 if (value >= a && value <= b)
                 {
@@ -1154,13 +1203,38 @@ namespace ConsoleApp8
                 }
                 if (ok == false)
                 {
-                    DarkRedText("Ошибка: ");
+                    DarkRedText("\nОшибка: ");
                     RedText("Значение не правильно!!!");
                     Console.WriteLine();
                     Console.WriteLine();
                 }
             } while (ok == false);
             return value;
+        }
+        public static String GetLogin() // ЛОГИН-ВВОД
+        {
+            String Loggin = "";
+            ConsoleKeyInfo key;
+            do
+            {
+                key = Console.ReadKey(true);
+
+                // Ignore any key out of range.
+                if (((int)key.Key) >= 65 && ((int)key.Key <= 90))
+                {
+                    // Append the character to the password.
+                    Loggin += key.KeyChar;
+                    DarkCyanText(key.KeyChar.ToString());
+                }
+                if(Loggin.Length>15)
+                {
+                    RedText("\t\t(допустимый разер логина не больше 15 символов)");
+                    break;
+                }
+                // Exit if Enter key is pressed.
+            } while (key.Key != ConsoleKey.Enter);
+            Console.WriteLine();
+            return Loggin;
         }
         public static String GetPassword() // ПАРОЛЬ-ВВОД
         {
@@ -1176,6 +1250,11 @@ namespace ConsoleApp8
                     // Append the character to the password.
                     Password += key.KeyChar;
                     DarkCyanText("*");
+                }
+                if (Password.Length > 15)
+                {
+                    RedText("\t\t(допустимый разер пароля не больше 15 символов)");
+                    break;
                 }
                 // Exit if Enter key is pressed.
             } while (key.Key != ConsoleKey.Enter);
