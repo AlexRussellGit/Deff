@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -914,8 +914,8 @@ namespace ConsoleApp8
             {
                 Console.Clear();
                 GreenText("Выбор действий над пользователем\n\n");
-                DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Посчёт пользователей\n3.Добавление пользователя\n4.Удаление пользователя\n5.Просмотр логов пользователей\n6.Передача прав администрара\n0.Выход\n\n");
-                Choise_System_Config = ReadOnlyInt(0, 6);
+                DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Добавление пользователя\n3.Удаление пользователя\n4.Просмотр логов пользователей\n5.Передача прав администрара\n0.Выход\n\n");
+                Choise_System_Config = ReadOnlyInt(0, 5);
                 switch (Choise_System_Config)
                 {
                     case 1:
@@ -928,18 +928,11 @@ namespace ConsoleApp8
                     case 2:
                         {
                             Console.Clear();
-                            CountUsers();
-                            Console.ReadKey();
-                            break;
-                        }
-                    case 3:
-                        {
-                            Console.Clear();
                             AddUser();
                             Console.ReadKey();
                             break;
                         }
-                    case 4:
+                    case 3:
                         {
                             Console.Clear();
                             DeleteUser();
@@ -952,14 +945,14 @@ namespace ConsoleApp8
                             }
                             break;
                         }
-                    case 5:
+                    case 4:
                         {
                             Console.Clear();
                             ShowLogsUsers();
                             Console.ReadKey();
                             break;
                         }
-                    case 6:
+                    case 5:
                         {
                             Console.Clear();
                             AdminRightsTransfer();
@@ -980,7 +973,7 @@ namespace ConsoleApp8
 
         ///ФУНКЦИИ АДМИНИСТРИРОВАНИЯ
         
-        private static void ShowUsers() // ПОКАЗ ПОЛЬЗОВАТЕЛЕЙ
+        private static void ShowUsers() // ПОКАЗ / ПОДСЧЁТ ПОЛЬЗОВАТЕЛЕЙ
         {
             GreenText("Показ пльзователей\n\n");
             try
@@ -989,6 +982,10 @@ namespace ConsoleApp8
                 FileStream fs = new FileStream("Users.txt", FileMode.Open);
                 BinaryFormatter formatter = new BinaryFormatter();
                 Users user = (Users)formatter.Deserialize(fs);
+
+                DarkCyanText("Количество пользователей: ");
+                RedText(user.Logins.Count + "\n\n");
+
                 fs.Close();
                 for (int i = 0; i < user.Logins.Count; i++) // Ищем пользователя и проверяем правильность пароля.
                 {
@@ -1008,17 +1005,6 @@ namespace ConsoleApp8
             }
             catch { Console.WriteLine("Данных нет"); }
             DarkCyanText("Для подолжения нажмите любую клавишу...");
-        }
-        private static void CountUsers() // ПОДСЧЁТ ПОЛЬЗОВАЕТЕЛЕЙ
-        {
-            GreenText("Вывод количества пользователей\n\n");
-            FileStream fs = new FileStream("Users.txt", FileMode.Open);
-            BinaryFormatter formatter = new BinaryFormatter();
-            Users user = (Users)formatter.Deserialize(fs);
-            DarkCyanText("Количество пользователей: ");
-            RedText(user.Logins.Count + "\n\n");
-            DarkCyanText("Для подолжения нажмите любую клавишу...");
-            fs.Close();
         }
         private static void AddUser() // ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
         {
