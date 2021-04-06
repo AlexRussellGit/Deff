@@ -19,7 +19,8 @@ namespace ConsoleApp8
         public static string current_login = string.Empty; // ДАННЫЙ ПОЛЬЗОВАТЕЛЬ СИСТЕМЫ
         public static string current_password = string.Empty; // ПАРОЛЬ ДАННОГО ПОЛЬЗОВАТЕЛЯ СИСТЕМЫ
         public static bool admin_changed = false; // ПЕРЕМЕННАЯ ДЛЯ ПРОВЕРКИ СМЕНЫ АДМИНИСТРАТОРА
-        
+        public static int user_id;  //id ПОЛЬЗОВАТЕЛЯ
+
         private static void SystemLogin() // ВХОД В СИСТЕМУ
         {
             int Choise_Login;
@@ -56,14 +57,8 @@ namespace ConsoleApp8
                                         current_password = user.Passwords[i];
 
                                         {// ЗАПИСЬ
-                                            string s = "USER " + current_login + " LOGGED IN AT " + DateTime.Now;
-                                            if (i == 0)
-                                            {
-                                                s += " {ADMIN}";
-                                            }
-                                            System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
-                                            writer.WriteLine(s);
-                                            writer.Close();
+                                            user_id = i;
+                                            Logs.LogIn(current_login, user_id);
                                         }
 
                                         Console.ReadKey();
@@ -86,6 +81,7 @@ namespace ConsoleApp8
                                                 if(Counter_Wrong_Pass==3)
                                                 {
                                                     RedText("\nВы ввели пароль неверно более 3 раз\nДля продолдения нажмите любую клавишу...");
+                                                    Logs.InvalidPass(_login);
                                                     Console.ReadKey();
                                                     break;
                                                 }
@@ -97,14 +93,8 @@ namespace ConsoleApp8
                                                 current_login = user.Logins[i];
                                                 current_password = user.Passwords[i];
                                                 {// ЗАПИСЬ
-                                                    string s = "USER " + current_login + " LOGGED IN AT " + DateTime.Now;
-                                                    if (i == 0)
-                                                    {
-                                                        s += " {ADMIN}";
-                                                    }
-                                                    System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
-                                                    writer.WriteLine(s);
-                                                    writer.Close();
+                                                    user_id = i;
+                                                    Logs.LogIn(current_login, i);
                                                 }
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -161,7 +151,12 @@ namespace ConsoleApp8
                             }
                             break;
                         }
-                    case 0: break;
+                    case 0:
+                        {
+                            Logs.LogOut(current_login, user_id);
+                            break;
+                        }
+                        
                 }
             } while (Choise_System != 0);
         }
@@ -1047,6 +1042,7 @@ namespace ConsoleApp8
                         user.Passwords.Add(_password);
                         formatter = new BinaryFormatter();
                         formatter.Serialize(fs, user); // Сериализуем класс.
+                        Logs.AddUser(_login);
                         DarkCyanText("\nПользователь Добавлен! Для продолжения нажмите любую клавишу...");
                     }
                 }
@@ -1126,6 +1122,7 @@ namespace ConsoleApp8
                                     user.Logins.Remove(_login);
                                     user.Passwords.Remove(_password);
                                     formatter.Serialize(fs, user); // Сериализуем класс.
+                                    Logs.DeleteUser(_login);
                                     DarkCyanText("\nПользователь удалён! Для продолжения нажмите любую клавишу...");
                                 }
                             }
@@ -1203,6 +1200,7 @@ namespace ConsoleApp8
                                     user.Logins[NewAdmin] = current_login;
                                     user.Passwords[NewAdmin] = current_password;
                                     formatter.Serialize(fs, user); // Сериализуем класс.
+                                    Logs.TransferRights(_login, current_login);
                                     DarkCyanText("\nПрава Переданы! Для продолжения нажмите любую клавишу...");
                                 }
                             }
