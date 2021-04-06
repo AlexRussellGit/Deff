@@ -15,9 +15,11 @@ namespace ConsoleApp8
             {
                 s += " {ADMIN}";
             }
+            Program.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
             writer.Close();
+            Program.Crypt("LOGS.txt");
 
         }
 
@@ -28,43 +30,51 @@ namespace ConsoleApp8
             {
                 s += " {ADMIN}";
             }
+            Program.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
             writer.Close();
+            Program.Crypt("LOGS.txt");
         }
 
         public static void AddUser(string login)
         {
             string s = "NEW USER " + login + " ADDED AT " + DateTime.Now;
-
+            Program.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
             writer.Close();
+            Program.Crypt("LOGS.txt");
         }
 
         public static void DeleteUser(string login)
         {
             string s = "USER " + login + " DELETED AT " + DateTime.Now;
+            Program.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
             writer.Close();
-
+            Program.Crypt("LOGS.txt");
         }
 
         public static void TransferRights(string login_adm, string login)
         {
             string s = "ADMIN RIGHTS CHANGED FROM " + login + " TO USER " + login_adm + " AT " + DateTime.Now;
+            Program.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
             writer.Close();
+            Program.Crypt("LOGS.txt");
         }
 
         public static void InvalidPass(string login)
         {
             string s = "USER " + login + " WROTE INVALID PASSWORD AT " + DateTime.Now;
+            Program.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
             writer.Close();
+            Program.Crypt("LOGS.txt");
         }
 
     }
