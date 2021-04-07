@@ -14,91 +14,25 @@ namespace ConsoleApp8
 {
     class Program
     {
-        
+
         /// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
         public static string current_login = string.Empty; // ДАННЫЙ ПОЛЬЗОВАТЕЛЬ СИСТЕМЫ
         public static string current_password = string.Empty; // ПАРОЛЬ ДАННОГО ПОЛЬЗОВАТЕЛЯ СИСТЕМЫ
         public static bool admin_changed = false; // ПЕРЕМЕННАЯ ДЛЯ ПРОВЕРКИ СМЕНЫ АДМИНИСТРАТОРА
         public static int user_id;  //id ПОЛЬЗОВАТЕЛЯ
-        static string str;  //ВРЕМЕННАЯ СТРОКА
+        public static string str;  //ВРЕМЕННАЯ СТРОКА
 
-        public static void Crypt(string FileName) // ШИФРОВКА ФАЙЛА
-        {
-            short[] key = { 3, 1, 4, 2 };
-            string[] rf = File.ReadAllLines(FileName);
-            StreamWriter sw = new StreamWriter(FileName);
-            for (int k = 0; k < rf.Length; k++)
-            {
-                str = "";
-                int n2 = key.Count();
-                int n1;
-                if (rf[k].Length % n2 == 0) n1 = rf[k].Length / n2;
-                else n1 = rf[k].Length / n2 + 1;
-                char[][] matr = new char[n1][];
-                int c1 = 0;
-                for (int i = 0; i < n1; i++)
-                {
-                    matr[i] = new char[n2];
-                    for (int j = 0; j < n2; j++)
-                    {
-                        if (c1 >= rf[k].Length) matr[i][j] = ' ';
-                        else matr[i][j] = rf[k][c1];
-                        c1++;
-                    }
-                }
-                for (int i = 0; i < n2; i++)
-                    for (int j = 0; j < n1; j++)
-                        str += matr[j][key[i] - 1];
-                if (k == rf.Length - 1) sw.Write(str);
-                else sw.WriteLine(str);
-            }
-            sw.Close();
-        }
-        public static void Decrypt(string FileName)   // ДЕШИФРОВКА ФАЙЛА
-        {
-            short[] key = { 3, 1, 4, 2 };
-            string[] rf = File.ReadAllLines(FileName);
-            StreamWriter sw = new StreamWriter(FileName);
-            for (int k = 0; k < rf.Length; k++)
-            {
-                str = "";
-                int n2 = key.Count();
-                int n1;
-                if (rf[k].Length % n2 == 0) n1 = rf[k].Length / n2;
-                else n1 = rf[k].Length / n2 + 1;
-
-                char[][] matr = new char[n2][];
-                int c1 = 0;
-                for (int i = 0; i < n2; i++)
-                    matr[i] = new char[n1];
-
-                for (int i = 0; i < n2; i++)
-                {
-                    for (int j = 0; j < n1; j++)
-                    {
-                        matr[key[i] - 1][j] = rf[k][c1];
-                        c1++;
-                    }
-                }
-                for (int i = 0; i < n1; i++)
-                    for (int j = 0; j < n2; j++)
-                        str += matr[j][i];
-                str = str.TrimEnd(' ');
-                if (k == rf.Length - 1) sw.Write(str);
-                else sw.WriteLine(str);
-            }
-            sw.Close();
-        }
         private static void SystemLogin() // ВХОД В СИСТЕМУ
         {
             int Choise_Login;
-            do{
+            do
+            {
                 Console.Clear();
                 admin_changed = false;
                 ColorTextOut.GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
                 ColorTextOut.YellowText("Войти в систему?\n\n1.Войти\n0.Завыршить работу\n\n");
-                Choise_Login = IntNumRangeIn.ReadOnlyInt(0, 1);    
-                switch(Choise_Login)
+                Choise_Login = IntNumRangeIn.ReadOnlyInt(0, 1);
+                switch (Choise_Login)
                 {
                     case 1:
                         {
@@ -146,7 +80,7 @@ namespace ConsoleApp8
                                             {
                                                 ColorTextOut.RedText("\nНеверный пароль!\n");
                                                 Counter_Wrong_Pass++;
-                                                if(Counter_Wrong_Pass==3)
+                                                if (Counter_Wrong_Pass == 3)
                                                 {
                                                     ColorTextOut.RedText("\nВы ввели пароль неверно более 3 раз\nДля продолдения нажмите любую клавишу...");
                                                     Logs.InvalidPass(_login);
@@ -190,7 +124,7 @@ namespace ConsoleApp8
                             break;
                         }
                 }
-            }while(Choise_Login!=0);
+            } while (Choise_Login != 0);
 
         }
         private static void TheSystem() // СИСТЕМА ПОД ДАННОГО ПОЛЬЗОВАТЕЛЯ 
@@ -213,7 +147,7 @@ namespace ConsoleApp8
                         {
                             UsersConfig();
                             //проверка
-                            if (admin_changed==true)
+                            if (admin_changed == true)
                             {
                                 Choise_System = 0;
                             }
@@ -224,7 +158,7 @@ namespace ConsoleApp8
                             Logs.LogOut(current_login, user_id);
                             break;
                         }
-                        
+
                 }
             } while (Choise_System != 0);
         }
@@ -984,21 +918,21 @@ namespace ConsoleApp8
                     case 1:
                         {
                             Console.Clear();
-                            ShowUsers();
+                            AccManagement.ShowUsers();
                             Console.ReadKey();
                             break;
                         }
                     case 2:
                         {
                             Console.Clear();
-                            AddUser();
+                            AccManagement.AddUser();
                             Console.ReadKey();
                             break;
                         }
                     case 3:
                         {
                             Console.Clear();
-                            DeleteUser();
+                            AccManagement.DeleteUser();
                             Console.ReadKey();
 
                             //проверка
@@ -1011,17 +945,17 @@ namespace ConsoleApp8
                     case 4:
                         {
                             Console.Clear();
-                            ShowLogsUsers();
+                            AccManagement.ShowLogsUsers();
                             Console.ReadKey();
                             break;
                         }
                     case 5:
                         {
                             Console.Clear();
-                            AdminRightsTransfer();
+                            AccManagement.AdminRightsTransfer();
                             Console.ReadKey();
                             break;
-                        }  
+                        }
                     case 0: break;
                 }
             } while (Choise_System_Config != 0);
@@ -1033,284 +967,7 @@ namespace ConsoleApp8
                 SystemLogin();
             }
         }
-
-        ///ФУНКЦИИ АДМИНИСТРИРОВАНИЯ
-        
-        private static void ShowUsers() // ПОКАЗ / ПОДСЧЁТ ПОЛЬЗОВАТЕЛЕЙ
-        {
-            ColorTextOut.GreenText("Показ пльзователей\n\n");
-            try
-            {
-
-                FileStream fs = new FileStream("Users.txt", FileMode.Open);
-                BinaryFormatter formatter = new BinaryFormatter();
-                Users user = (Users)formatter.Deserialize(fs);
-
-                ColorTextOut.DarkCyanText("Количество пользователей: ");
-                ColorTextOut.RedText(user.Logins.Count + "\n\n");
-
-                fs.Close();
-                for (int i = 0; i < user.Logins.Count; i++) // Ищем пользователя и проверяем правильность пароля.
-                {
-                    Console.Write("Пользователь [" + i + "]: ");
-                    ColorTextOut.CyanText(user.Logins[i]);
-                    if (i == 0)
-                    {
-                        ColorTextOut.RedText("\t{Admin} ");
-                        Console.WriteLine();
-                    }
-                    else
-                    {
-                        Console.WriteLine();
-                    }
-                }
-                Console.WriteLine();
-            }
-            catch { Console.WriteLine("Данных нет"); }
-            ColorTextOut.DarkCyanText("Для подолжения нажмите любую клавишу...");
-        }
-        private static void AddUser() // ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
-        {
-
-
-            if (Admin_Check())
-            {
-                FileStream fs = new FileStream("Users.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-                BinaryFormatter formatter = new BinaryFormatter();
-                Users user;
-                try
-                {
-                    user = (Users)formatter.Deserialize(fs);
-                }
-                catch
-                {
-                    user = new Users();
-                }
-                bool login_absent = true;
-                ColorTextOut.GreenText("Добавление нового пользователя\n\n");
-                ColorTextOut.CyanText("Пользователь: ");
-                string _login = LoginPasswordTextIn.GetLogin();
-                for (int i = 0; i < user.Logins.Count; i++)
-                {
-                    if (_login == user.Logins[i])
-                    {
-                        login_absent = false;
-                        break;
-                    }
-                }
-                if (login_absent)
-                {
-                    ColorTextOut.CyanText("Пароль Пользователя: ");
-                    string _password = LoginPasswordTextIn.GetPassword();
-                    if (_login == "" || _password == "") { Console.WriteLine("Не введен логин или пароль!"); }
-                    else
-                    {
-                        fs.SetLength(0);
-                        user.Logins.Add(_login);
-                        user.Passwords.Add(_password);
-                        formatter = new BinaryFormatter();
-                        formatter.Serialize(fs, user); // Сериализуем класс.
-                        Logs.AddUser(_login);
-                        ColorTextOut.DarkCyanText("\nПользователь Добавлен! Для продолжения нажмите любую клавишу...");
-                    }
-                }
-                else
-                {
-                    ColorTextOut.DarkCyanText("\nТакой пользователь уже существует!\nДля продолжения нажмите любую клавишу...");
-                }
-                fs.Close();
-            }
-
-        }
-        private static void DeleteUser() // УДАЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
-        {
-            if (Admin_Check())
-            {
-                ColorTextOut.GreenText("Удаление пользователя\n\n");
-                FileStream fs = new FileStream("Users.txt", FileMode.Open);
-                BinaryFormatter formatter = new BinaryFormatter();
-                Users user = (Users)formatter.Deserialize(fs);
-                if (user.Logins.Count == 1)
-                {
-                    ColorTextOut.DarkRedText("Единственный пользователь не может быть удалён!\nДля прододжения нажмите любую клавишу...");
-                }
-                else
-                {
-                    ColorTextOut.CyanText("Пользователь: ");
-                    string _login = LoginPasswordTextIn.GetLogin();
-                    ColorTextOut.CyanText("Пароль Пользователя: ");
-                    string _password = LoginPasswordTextIn.GetPassword();
-                    if (current_login == _login && current_password == _password)
-                    {
-                        int Choise_Delete;
-                        ColorTextOut.RedText("\nВы уверены что хотите удалить Администатора?\nВ данном случае система перезапустится и роль администатора перейдёт следующему по спику пользователю\n\n");
-                        ColorTextOut.CyanText("1.Да\n2.Нет\n\n");
-                        Choise_Delete = IntNumRangeIn.ReadOnlyInt(1, 2);
-                        switch (Choise_Delete)
-                        {
-                            case 1:
-                                {
-                                    fs.SetLength(0);
-                                    admin_changed = true;
-                                    user.Logins.Remove(_login);
-                                    user.Passwords.Remove(_password);
-                                    formatter.Serialize(fs, user); // Сериализуем класс.
-                                    ColorTextOut.DarkCyanText("\nУчётная запись Администратора удалёна! Данная роль перешла следующему по списку пользователю!\nДля продолжения нажмите любую клавишу...");
-                                    break;
-                                }
-                            case 2:
-                                {
-                                    ColorTextOut.DarkCyanText("\nУчётная запись администратора не удалена!\n Для продолжения нажмите любую клавишу...");
-                                    break;
-                                }
-                        }
-
-                    }
-                    else
-                    {
-                        {
-                            try
-                            {
-                                bool user_absent = true;
-                                for (int i = 0; i < user.Logins.Count; i++)
-                                {
-                                    if (_login == user.Logins[i] & _password == user.Passwords[i])
-                                    {
-                                        user_absent = false;
-                                        break;
-                                    }
-                                }
-                                if (user_absent == true)
-                                {
-                                    ColorTextOut.DarkRedText("\nПользователь или пароль не верны! Для продолжения нажмите любую клавишу...");
-                                }
-                                else
-                                {
-                                    fs.SetLength(0);
-                                    user.Logins.Remove(_login);
-                                    user.Passwords.Remove(_password);
-                                    formatter.Serialize(fs, user); // Сериализуем класс.
-                                    Logs.DeleteUser(_login);
-                                    ColorTextOut.DarkCyanText("\nПользователь удалён! Для продолжения нажмите любую клавишу...");
-                                }
-                            }
-                            catch
-                            {
-                                ColorTextOut.DarkRedText("\nПользователь не навйлен! Для продолжения нажмите любую клавишу...");
-                            }
-                        }
-                    }
-                }
-                fs.Close();
-            }
-        }
-        private static void ShowLogsUsers() // ЛОГИ ПОЛЬЗОВАТЕЛЕЙ
-        {
-            if (Admin_Check())
-            {
-                ColorTextOut.GreenText("Показ логов пользователей\n\n");
-                Decrypt("LOGS.txt");
-                FileStream stream = new FileStream("LOGS.txt", FileMode.OpenOrCreate);
-                StreamReader reader = new StreamReader(stream);
-                string str = reader.ReadToEnd();
-                stream.Close();
-                Crypt("LOGS.txt");
-                ColorTextOut.CyanText(str + "\n\n");
-                ColorTextOut.DarkCyanText("Для продолжения нажмите любую клавишу...");
-            }
-        }
-        private static void AdminRightsTransfer() // ПЕРЕДАЧА ПРАВ
-        {
-            if (Admin_Check())
-            {
-                ColorTextOut.GreenText("Передача прав Администрора\n\n");
-                FileStream fs = new FileStream("Users.txt", FileMode.Open);
-                BinaryFormatter formatter = new BinaryFormatter();
-                Users user = (Users)formatter.Deserialize(fs);
-                if (user.Logins.Count == 1)
-                {
-                    ColorTextOut.DarkRedText("Единственный пользователь не может передать права!\nДля прододжения нажмите любую клавишу...");
-                }
-                else
-                {
-                    ColorTextOut.CyanText("Пользователь: ");
-                    string _login = LoginPasswordTextIn.GetLogin();
-                    ColorTextOut.CyanText("Пароль Пользователя: ");
-                    string _password = LoginPasswordTextIn.GetPassword();
-                    if (current_login == _login && current_password == _password)
-                    {
-                        ColorTextOut.RedText("\nВы уже являетесь администратором\nДля прододжения нажмите любую клавишу...");
-                    }
-                    else
-                    {
-                        {
-                            try
-                            {
-                                bool user_absent = true;
-                                int NewAdmin=0;
-                                for (int i = 0; i < user.Logins.Count; i++)
-                                {
-                                    if (_login == user.Logins[i] & _password == user.Passwords[i])
-                                    {
-                                        user_absent = false;
-                                        NewAdmin = i;
-                                        break;
-                                    }
-                                }
-                                if (user_absent == true)
-                                {
-                                    ColorTextOut.DarkRedText("\nЛогин пользователя или пароль не верны! Для продолжения нажмите любую клавишу...");
-                                }
-                                else
-                                {
-                                    fs.SetLength(0);
-                                    user.Logins[0] = user.Logins[NewAdmin];
-                                    user.Passwords[0] = user.Passwords[NewAdmin];
-                                    user.Logins[NewAdmin] = current_login;
-                                    user.Passwords[NewAdmin] = current_password;
-                                    formatter.Serialize(fs, user); // Сериализуем класс.
-                                    Logs.TransferRights(_login, current_login);
-                                    ColorTextOut.DarkCyanText("\nПрава Переданы! Для продолжения нажмите любую клавишу...");
-                                }
-                            }
-                            catch
-                            {
-                                ColorTextOut.DarkRedText("\nПользователь не навйлен! Для продолжения нажмите любую клавишу...");
-                            }
-                        }
-                    }
-                }
-                fs.Close();
-            }
-        }
-
-        
-        /// ПРОЧИЕ ФУНКЦИИ
-        
-        private static bool Admin_Check() // АДМИН-ПРИВЕЛЕГИИ
-        {
-            try
-            {
-                FileStream fs = new FileStream("Users.txt", FileMode.Open);
-                BinaryFormatter formatter = new BinaryFormatter();
-                Users user = (Users)formatter.Deserialize(fs);
-                fs.Close();
-                if (user.Logins[0] == current_login && user.Passwords[0] == current_password)
-                {
-                    return true;
-                }
-                else
-                {
-                    ColorTextOut.RedText("Пользователь не является Администаратором и не может выполнить данное действие!\nДля продолжения нажмите любую клавишу...");
-                    return false;
-                }
-            }
-            catch
-            {
-                ColorTextOut.RedText("Неизвестная ошибка, возможно нет пользователей!\nДля продолжения нажмите любую клавишу...");
-                return false;
-            }
-        }
     }
+        
 }
     
