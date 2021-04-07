@@ -20,7 +20,6 @@ namespace ConsoleApp8
         public static string current_password = string.Empty; // ПАРОЛЬ ДАННОГО ПОЛЬЗОВАТЕЛЯ СИСТЕМЫ
         public static bool admin_changed = false; // ПЕРЕМЕННАЯ ДЛЯ ПРОВЕРКИ СМЕНЫ АДМИНИСТРАТОРА ПОСЛЕ УДАЛЕНИЯ У.З. АДМИНИСТАРТОРА
         public static int user_id;  //id ПОЛЬЗОВАТЕЛЯ
-        public static string str;  //ВРЕМЕННАЯ СТРОКА
 
         private static void SystemLogin() // ВХОД В СИСТЕМУ
         {
