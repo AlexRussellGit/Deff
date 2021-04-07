@@ -23,6 +23,11 @@ namespace ConsoleApp8
                     Loggin += key.KeyChar;
                     ColorTextOut.DarkCyanText(key.KeyChar.ToString());
                 }
+                if(((int)key.Key) == 8 && Loggin.Length != 0)
+                {
+                    Loggin = Loggin.Remove(Loggin.Length - 1);
+                    ColorTextOut.DarkCyanText(key.KeyChar.ToString() + " " + key.KeyChar.ToString());
+                }
                 if (Loggin.Length > 15)
                 {
                     ColorTextOut.RedText("\t\t(допустимый разер логина не больше 15 символов)");
@@ -47,6 +52,11 @@ namespace ConsoleApp8
                     // Append the character to the password.
                     Password += key.KeyChar;
                     ColorTextOut.DarkCyanText("*");
+                }
+                if(((int)key.Key) == 8 && Password.Length != 0)
+                {
+                    Password = Password.Remove(Password.Length - 1);
+                    ColorTextOut.DarkCyanText(key.KeyChar.ToString() + " " + key.KeyChar.ToString());
                 }
                 if (Password.Length > 15)
                 {
