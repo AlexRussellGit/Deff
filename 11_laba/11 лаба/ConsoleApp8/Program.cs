@@ -112,9 +112,9 @@ namespace ConsoleApp8
                                 Users user = (Users)formatter.Deserialize(fs);
                                 fs.Close();
                                 ColorTextOut.CyanText("Пользователь: ");
-                                string _login = GetLogin();
+                                string _login = LoginPasswordTextIn.GetLogin();
                                 ColorTextOut.CyanText("Пароль: ");
-                                string _password = GetPassword();
+                                string _password = LoginPasswordTextIn.GetPassword();
                                 for (int i = 0; i < user.Logins.Count; i++) // Ищем пользователя и проверяем правильность пароля.
                                 {
                                     if (user.Logins[i] == _login && user.Passwords[i] == _password)
@@ -141,7 +141,7 @@ namespace ConsoleApp8
                                         while (_password != user.Passwords[i])
                                         {
                                             ColorTextOut.CyanText("Пароль: ");
-                                            _password = GetPassword();
+                                            _password = LoginPasswordTextIn.GetPassword();
                                             if (_password != user.Passwords[i])
                                             {
                                                 ColorTextOut.RedText("\nНеверный пароль!\n");
@@ -1089,7 +1089,7 @@ namespace ConsoleApp8
                 bool login_absent = true;
                 ColorTextOut.GreenText("Добавление нового пользователя\n\n");
                 ColorTextOut.CyanText("Пользователь: ");
-                string _login = GetLogin();
+                string _login = LoginPasswordTextIn.GetLogin();
                 for (int i = 0; i < user.Logins.Count; i++)
                 {
                     if (_login == user.Logins[i])
@@ -1101,7 +1101,7 @@ namespace ConsoleApp8
                 if (login_absent)
                 {
                     ColorTextOut.CyanText("Пароль Пользователя: ");
-                    string _password = GetPassword();
+                    string _password = LoginPasswordTextIn.GetPassword();
                     if (_login == "" || _password == "") { Console.WriteLine("Не введен логин или пароль!"); }
                     else
                     {
@@ -1137,9 +1137,9 @@ namespace ConsoleApp8
                 else
                 {
                     ColorTextOut.CyanText("Пользователь: ");
-                    string _login = GetLogin();
+                    string _login = LoginPasswordTextIn.GetLogin();
                     ColorTextOut.CyanText("Пароль Пользователя: ");
-                    string _password = GetPassword();
+                    string _password = LoginPasswordTextIn.GetPassword();
                     if (current_login == _login && current_password == _password)
                     {
                         int Choise_Delete;
@@ -1234,9 +1234,9 @@ namespace ConsoleApp8
                 else
                 {
                     ColorTextOut.CyanText("Пользователь: ");
-                    string _login = GetLogin();
+                    string _login = LoginPasswordTextIn.GetLogin();
                     ColorTextOut.CyanText("Пароль Пользователя: ");
-                    string _password = GetPassword();
+                    string _password = LoginPasswordTextIn.GetPassword();
                     if (current_login == _login && current_password == _password)
                     {
                         ColorTextOut.RedText("\nВы уже являетесь администратором\nДля прододжения нажмите любую клавишу...");
@@ -1334,60 +1334,7 @@ namespace ConsoleApp8
             } while (ok == false);
             return value;
         }
-        public static String GetLogin() // ЛОГИН-ВВОД
-        {
-            String Loggin = "";
-            ConsoleKeyInfo key;
-            do
-            {
-                key = Console.ReadKey(true);
-
-                // Ignore any key out of range.
-                if (((int)key.Key) >= 65 && ((int)key.Key <= 90))
-                {
-                    // Append the character to the password.
-                    Loggin += key.KeyChar;
-                    ColorTextOut.DarkCyanText(key.KeyChar.ToString());
-                }
-                if(Loggin.Length>15)
-                {
-                    ColorTextOut.RedText("\t\t(допустимый разер логина не больше 15 символов)");
-                    break;
-                }
-                // Exit if Enter key is pressed.
-            } while (key.Key != ConsoleKey.Enter);
-            Console.WriteLine();
-            return Loggin;
-        }
-        public static String GetPassword() // ПАРОЛЬ-ВВОД
-        {
-            String Password = "";
-            ConsoleKeyInfo key;
-            do
-            {
-                key = Console.ReadKey(true);
-
-                // Ignore any key out of range.
-                if (((int)key.Key) >= 65 && ((int)key.Key <= 90) || ((int)key.Key) >= 48 && ((int)key.Key <= 57))
-                {
-                    // Append the character to the password.
-                    Password += key.KeyChar;
-                    ColorTextOut.DarkCyanText("*");
-                }
-                if (Password.Length > 15)
-                {
-                    ColorTextOut.RedText("\t\t(допустимый разер пароля не больше 15 символов)");
-                    break;
-                }
-                // Exit if Enter key is pressed.
-            } while (key.Key != ConsoleKey.Enter);
-
-            System.Threading.Thread.Sleep(500);
-            Console.WriteLine();
-            return Password;
-        }
-
-        /// ФУНКЦИИ ВСПОМОГАТЕЛЬНЫЕ (ВЫВОД)
+        
         
         
 
