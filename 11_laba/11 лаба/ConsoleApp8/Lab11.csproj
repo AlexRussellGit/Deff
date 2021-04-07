@@ -43,18 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccManagement.cs" />
-    <Compile Include="Class_Ships.cs" />
-    <Compile Include="ColorTextOut.cs" />
-    <Compile Include="DefendedProgram.cs" />
-    <Compile Include="EncryptDecrypt.cs" />
-    <Compile Include="IntNumRangeIn.cs" />
-    <Compile Include="LoginPasswordTextIn.cs" />
-    <Compile Include="Logs.cs" />
-    <Compile Include="MySortedDictionary.cs" />
+    <Compile Include="Supplementary\Administration\AccManagement.cs" />
+    <Compile Include="Supplementary\MainProgram\Class_Ships.cs" />
+    <Compile Include="Supplementary\InputOutput\ColorTextOut.cs" />
+    <Compile Include="Supplementary\MainProgram\DefendedProgram.cs" />
+    <Compile Include="Supplementary\Cryptography\EncryptDecrypt.cs" />
+    <Compile Include="Supplementary\InputOutput\IntNumRangeIn.cs" />
+    <Compile Include="Supplementary\InputOutput\LoginPasswordTextIn.cs" />
+    <Compile Include="Supplementary\Administration\Logs.cs" />
+    <Compile Include="Supplementary\MainProgram\MySortedDictionary.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users.cs" />
+    <Compile Include="Supplementary\Administration\Users.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
