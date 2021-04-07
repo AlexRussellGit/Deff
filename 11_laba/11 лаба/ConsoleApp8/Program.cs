@@ -18,7 +18,7 @@ namespace ConsoleApp8
         /// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ
         public static string current_login = string.Empty; // ДАННЫЙ ПОЛЬЗОВАТЕЛЬ СИСТЕМЫ
         public static string current_password = string.Empty; // ПАРОЛЬ ДАННОГО ПОЛЬЗОВАТЕЛЯ СИСТЕМЫ
-        public static bool admin_changed = false; // ПЕРЕМЕННАЯ ДЛЯ ПРОВЕРКИ СМЕНЫ АДМИНИСТРАТОРА
+        public static bool admin_changed = false; // ПЕРЕМЕННАЯ ДЛЯ ПРОВЕРКИ СМЕНЫ АДМИНИСТРАТОРА ПОСЛЕ УДАЛЕНИЯ У.З. АДМИНИСТАРТОРА
         public static int user_id;  //id ПОЛЬЗОВАТЕЛЯ
         public static string str;  //ВРЕМЕННАЯ СТРОКА
 
