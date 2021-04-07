@@ -129,12 +129,12 @@ namespace ConsoleApp8
                                     user.Logins.Remove(_login);
                                     user.Passwords.Remove(_password);
                                     formatter.Serialize(fs, user); // Сериализуем класс.
-                                    ColorTextOut.DarkCyanText("\nУчётная запись Администратора удалёна! Данная роль перешла следующему по списку пользователю!\nДля продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkCyanText("\n\nУчётная запись Администратора удалёна! Данная роль перешла следующему по списку пользователю!\nДля продолжения нажмите любую клавишу...");
                                     break;
                                 }
                             case 2:
                                 {
-                                    ColorTextOut.DarkCyanText("\nУчётная запись администратора не удалена!\n Для продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkCyanText("\n\nУчётная запись администратора не удалена!\n Для продолжения нажмите любую клавишу...");
                                     break;
                                 }
                         }
