@@ -97,7 +97,7 @@ namespace ConsoleApp8
                 admin_changed = false;
                 ColorTextOut.GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
                 ColorTextOut.YellowText("Войти в систему?\n\n1.Войти\n0.Завыршить работу\n\n");
-                Choise_Login = ReadOnlyInt(0, 1);    
+                Choise_Login = IntNumRangeIn.ReadOnlyInt(0, 1);    
                 switch(Choise_Login)
                 {
                     case 1:
@@ -201,7 +201,7 @@ namespace ConsoleApp8
                 Console.Clear();
                 ColorTextOut.GreenText("Генерация кораблей стоящих в порту и их динамическое хранение\nв виде кортежей, списков и обобщенных коллекций\n\n");
                 ColorTextOut.DarkCyanText("Системное меню:\n1.Выполнение программы\n2.Управление пользователями\n0.Выход\n\n");
-                Choise_System = ReadOnlyInt(0, 2);
+                Choise_System = IntNumRangeIn.ReadOnlyInt(0, 2);
                 switch (Choise_System)
                 {
                     case 1:
@@ -240,7 +240,7 @@ namespace ConsoleApp8
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine("Главное Меню:\n 1. Работа со Stack (Стек)\n 2. Работа с List<T> (Кортеж)\n 3. Работа с MySortedDictionary<T> (Обобщенная коллекция)\n 0. Выход\n");
-                    Choise_0 = ReadOnlyInt(0, 3);
+                    Choise_0 = IntNumRangeIn.ReadOnlyInt(0, 3);
                     switch (Choise_0)
                     {
                         case 1:
@@ -268,7 +268,7 @@ namespace ConsoleApp8
                                     Console.WriteLine();
                                     Console.WriteLine("Второстепенное Меню:\n 1. Добавление объекта в словарь\n 2. Удаление объекта из словарь\n 3. Печать всех элементов в списке\n 4. Количество созданных объектов типа \"Корвет\"\n 5. Количество созданных объектов типа \"Пароход\"\n 6. Вывести на экран все объекты типа \"Парусник\" \n 0. Выход");
                                     Console.WriteLine();
-                                    Choise_1 = ReadOnlyInt(0, 6);
+                                    Choise_1 = IntNumRangeIn.ReadOnlyInt(0, 6);
 
                                     switch (Choise_1)
                                     {
@@ -282,7 +282,7 @@ namespace ConsoleApp8
                                                 do
                                                 {
                                                     Console.WriteLine("Какой корабль хотели бы добавит?\n 1. Добавление Парохода\n 2. Добавление Парусника\n 3. Добавление Корвета\n 0. Выход");
-                                                    Choise_Add_Ships = ReadOnlyInt(0, 3);
+                                                    Choise_Add_Ships = IntNumRangeIn.ReadOnlyInt(0, 3);
                                                     switch (Choise_Add_Ships)
                                                     {
                                                         case 1:
@@ -296,11 +296,11 @@ namespace ConsoleApp8
                                                                 Console.Write("(Имя) Введите значение: ");
                                                                 a = Console.ReadLine();
                                                                 Console.Write("(Скорость) ");
-                                                                b = ReadOnlyInt(0, 1000);
+                                                                b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Водоизмещение) ");
-                                                                c = ReadOnlyInt(0, 1000);
+                                                                c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Мощьность) ");
-                                                                d = ReadOnlyInt(0, 1000);
+                                                                d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Pringles_Ships.Push(new Class_Steamboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
                                                                 ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -319,11 +319,11 @@ namespace ConsoleApp8
                                                                 Console.Write("(Имя) Введите значение: ");
                                                                 a = Console.ReadLine();
                                                                 Console.Write("(Скорость) ");
-                                                                b = ReadOnlyInt(0, 1000);
+                                                                b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Водоизмещение) ");
-                                                                c = ReadOnlyInt(0, 1000);
+                                                                c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Колличество парусов) ");
-                                                                d = ReadOnlyInt(0, 1000);
+                                                                d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Pringles_Ships.Push(new Class_Sailboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
                                                                 ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -342,13 +342,13 @@ namespace ConsoleApp8
                                                                 Console.Write("(Имя) Введите значение: ");
                                                                 a = Console.ReadLine();
                                                                 Console.Write("(Скорость) ");
-                                                                b = ReadOnlyInt(0, 1000);
+                                                                b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Водоизмещение) ");
-                                                                c = ReadOnlyInt(0, 1000);
+                                                                c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Колличество парусов) ");
-                                                                d = ReadOnlyInt(0, 1000);
+                                                                d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Колличество огнестрельного орудия) ");
-                                                                e = ReadOnlyInt(0, 1000);
+                                                                e = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Pringles_Ships.Push(new Class_Corvette_Ships(a, b, c, d, e));
                                                                 Console.WriteLine();
                                                                 ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -492,7 +492,7 @@ namespace ConsoleApp8
                                     Console.WriteLine();
                                     Console.WriteLine("Второстепенное Меню:\n 1. Добавление объекта в словарь\n 2. Удаление объектов с заданным именем из словаря\n 3. Вывод всех элементов словаря\n 4. Количество созданных объектов типа \"Корвет\"\n 5. Количество созданных объектов типа \"Пароход\"\n 6. Вывести на экран все объекты типа \"Парусник\" \n 0. Выход");
                                     Console.WriteLine();
-                                    Choise_2 = ReadOnlyInt(0, 6);
+                                    Choise_2 = IntNumRangeIn.ReadOnlyInt(0, 6);
 
                                     switch (Choise_2)
                                     {
@@ -506,7 +506,7 @@ namespace ConsoleApp8
                                                 do
                                                 {
                                                     Console.WriteLine("Какой корабль хотели бы добавит?\n 1. Добавление Парохода\n 2. Добавление Парусника\n 3. Добавление Корвета\n 0. Выход");
-                                                    Choise_Add_Ships = ReadOnlyInt(0, 3);
+                                                    Choise_Add_Ships = IntNumRangeIn.ReadOnlyInt(0, 3);
                                                     switch (Choise_Add_Ships)
                                                     {
                                                         case 1:
@@ -520,11 +520,11 @@ namespace ConsoleApp8
                                                                 Console.Write("(Имя) Введите значение: ");
                                                                 a = Console.ReadLine();
                                                                 Console.Write("(Скорость) ");
-                                                                b = ReadOnlyInt(0, 1000);
+                                                                b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Водоизмещение) ");
-                                                                c = ReadOnlyInt(0, 1000);
+                                                                c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Мощьность) ");
-                                                                d = ReadOnlyInt(0, 1000);
+                                                                d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Convoy_Ships.Add(new Class_Steamboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
                                                                 ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -543,11 +543,11 @@ namespace ConsoleApp8
                                                                 Console.Write("(Имя) Введите значение: ");
                                                                 a = Console.ReadLine();
                                                                 Console.Write("(Скорость) ");
-                                                                b = ReadOnlyInt(0, 1000);
+                                                                b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Водоизмещение) ");
-                                                                c = ReadOnlyInt(0, 1000);
+                                                                c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Колличество парусов) ");
-                                                                d = ReadOnlyInt(0, 1000);
+                                                                d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Convoy_Ships.Add(new Class_Sailboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
                                                                 ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -566,13 +566,13 @@ namespace ConsoleApp8
                                                                 Console.Write("(Имя) Введите значение: ");
                                                                 a = Console.ReadLine();
                                                                 Console.Write("(Скорость) ");
-                                                                b = ReadOnlyInt(0, 1000);
+                                                                b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Водоизмещение) ");
-                                                                c = ReadOnlyInt(0, 1000);
+                                                                c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Колличество парусов) ");
-                                                                d = ReadOnlyInt(0, 1000);
+                                                                d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Console.Write("(Колличество огнестрельного орудия) ");
-                                                                e = ReadOnlyInt(0, 1000);
+                                                                e = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                 Convoy_Ships.Add(new Class_Corvette_Ships(a, b, c, d, e));
                                                                 Console.WriteLine();
                                                                 ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -743,7 +743,7 @@ namespace ConsoleApp8
                                 {
                                     Console.WriteLine("Второстепенное Меню:\n 1. Добавление объекта в словарь\n 2. Удаление объектов с ключем\n 3. Вывод всех элементов словаря\n 4. Создание клона\n 0. Выход");
                                     Console.WriteLine();
-                                    Choise_3 = ReadOnlyInt(0, 4);
+                                    Choise_3 = IntNumRangeIn.ReadOnlyInt(0, 4);
                                     switch (Choise_3)
                                     {
                                         case 1:
@@ -756,7 +756,7 @@ namespace ConsoleApp8
                                                 do
                                                 {
                                                     Console.WriteLine("Какой корабль хотели бы добавит?\n 1. Добавление Парохода\n 2. Добавление Парусника\n 3. Добавление Корвета\n 0. Выход");
-                                                    Choise_Add_Ships = ReadOnlyInt(0, 3);
+                                                    Choise_Add_Ships = IntNumRangeIn.ReadOnlyInt(0, 3);
                                                     switch (Choise_Add_Ships)
                                                     {
                                                         case 1:
@@ -768,17 +768,17 @@ namespace ConsoleApp8
                                                                 string a;
                                                                 int b, c, d, Booler;
                                                                 Console.Write("(Ключ) ");
-                                                                Booler = ReadOnlyInt(0, 1000000);
+                                                                Booler = IntNumRangeIn.ReadOnlyInt(0, 1000000);
                                                                 if (Key_Value_Ships.GetByIndex(Booler) == null)
                                                                 {
                                                                     Console.Write("(Имя) Введите значение: ");
                                                                     a = Console.ReadLine();
                                                                     Console.Write("(Скорость) ");
-                                                                    b = ReadOnlyInt(0, 1000);
+                                                                    b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Console.Write("(Водоизмещение) ");
-                                                                    c = ReadOnlyInt(0, 1000);
+                                                                    c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Console.Write("(Мощьность) ");
-                                                                    d = ReadOnlyInt(0, 1000);
+                                                                    d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Key_Value_Ships.Add(Booler, new Class_Sailboat_Ships(a, b, c, d));
                                                                     Console.WriteLine();
                                                                     ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -800,17 +800,17 @@ namespace ConsoleApp8
                                                                 string a;
                                                                 int b, c, d, Booler;
                                                                 Console.Write("(Ключ) ");
-                                                                Booler = ReadOnlyInt(0, 1000000);
+                                                                Booler = IntNumRangeIn.ReadOnlyInt(0, 1000000);
                                                                 if (Key_Value_Ships.GetByIndex(Booler) == null)
                                                                 {
                                                                     Console.Write("(Имя) Введите значение: ");
                                                                     a = Console.ReadLine();
                                                                     Console.Write("(Скорость) ");
-                                                                    b = ReadOnlyInt(0, 1000);
+                                                                    b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Console.Write("(Водоизмещение) ");
-                                                                    c = ReadOnlyInt(0, 1000);
+                                                                    c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Console.Write("(Количество парусов) ");
-                                                                    d = ReadOnlyInt(0, 1000);
+                                                                    d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Key_Value_Ships.Add(Booler, new Class_Steamboat_Ships(a, b, c, d));
                                                                     Console.WriteLine();
                                                                     ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -832,19 +832,19 @@ namespace ConsoleApp8
                                                                 string a;
                                                                 int b, c, d, e, Buf;
                                                                 Console.Write("(Ключ) ");
-                                                                Buf = ReadOnlyInt(0, 100000);
+                                                                Buf = IntNumRangeIn.ReadOnlyInt(0, 100000);
                                                                 if (Key_Value_Ships.GetByIndex(Buf) == null)
                                                                 {
                                                                     Console.Write("(Имя) Введите значение: ");
                                                                     a = Console.ReadLine();
                                                                     Console.Write("(Скорость) ");
-                                                                    b = ReadOnlyInt(0, 1000);
+                                                                    b = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Console.Write("(Водоизмещение) ");
-                                                                    c = ReadOnlyInt(0, 1000);
+                                                                    c = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Console.Write("(Количество парусов) ");
-                                                                    d = ReadOnlyInt(0, 1000);
+                                                                    d = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Console.Write("(Количество огнестрельных орудий) ");
-                                                                    e = ReadOnlyInt(0, 1000);
+                                                                    e = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                                     Key_Value_Ships.Add(Buf, new Class_Corvette_Ships(a, b, c, d, e));
                                                                     Console.WriteLine();
                                                                     ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
@@ -869,7 +869,7 @@ namespace ConsoleApp8
                                                 ColorTextOut.GreenText("3 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                int Deleter = ReadOnlyInt(0, 1000);
+                                                int Deleter = IntNumRangeIn.ReadOnlyInt(0, 1000);
                                                 if (Key_Value_Ships.ContainsKey(Deleter) == false)////////////////////////////
                                                 {
                                                     Console.WriteLine("Элемет не найден");
@@ -978,7 +978,7 @@ namespace ConsoleApp8
                 Console.Clear();
                 ColorTextOut.GreenText("Выбор действий над пользователем\n\n");
                 ColorTextOut.DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Добавление пользователя\n3.Удаление пользователя\n4.Просмотр логов пользователей\n5.Передача прав администрара\n0.Выход\n\n");
-                Choise_System_Config = ReadOnlyInt(0, 5);
+                Choise_System_Config = IntNumRangeIn.ReadOnlyInt(0, 5);
                 switch (Choise_System_Config)
                 {
                     case 1:
@@ -1145,7 +1145,7 @@ namespace ConsoleApp8
                         int Choise_Delete;
                         ColorTextOut.RedText("\nВы уверены что хотите удалить Администатора?\nВ данном случае система перезапустится и роль администатора перейдёт следующему по спику пользователю\n\n");
                         ColorTextOut.CyanText("1.Да\n2.Нет\n\n");
-                        Choise_Delete = ReadOnlyInt(1, 2);
+                        Choise_Delete = IntNumRangeIn.ReadOnlyInt(1, 2);
                         switch (Choise_Delete)
                         {
                             case 1:
@@ -1284,60 +1284,7 @@ namespace ConsoleApp8
             }
         }
 
-        /// ФУНКЦИИ ВСПОМОГАТЕЛЬНЫЕ (ВВОД)
         
-        static int ReadOnlyInt(int a, int b) // ЦИФР-ВВОД
-        {
-            int value;
-            bool ok = false;
-            ConsoleKeyInfo key;
-            do
-            {
-                ColorTextOut.CyanText("Введите значение: ");
-                string buf="";
-                
-                do
-                {
-                    key = Console.ReadKey(true);
-
-                    // Ignore any key out of range.
-                    if (((int)key.Key) >= 48 && ((int)key.Key <= 57))
-                    {
-                        // Append the character to the password.
-                        buf += key.KeyChar;
-                        ColorTextOut.DarkCyanText(key.KeyChar.ToString());
-                    }
-                    if (buf.Length > 5)
-                    {
-                        ColorTextOut.RedText("\t\t(допустимый разер не больше 5 символов)");
-                        break;
-                    }
-                    // Exit if Enter key is pressed.
-                } while (key.Key != ConsoleKey.Enter);
-                
-                ok = Int32.TryParse(buf, out value);
-                if (value >= a && value <= b)
-                {
-
-                }
-                else
-                {
-                    ok = false;
-                }
-                if (ok == false)
-                {
-                    ColorTextOut.DarkRedText("\nОшибка: ");
-                    ColorTextOut.RedText("Значение не правильно!!!");
-                    Console.WriteLine();
-                    Console.WriteLine();
-                }
-            } while (ok == false);
-            return value;
-        }
-        
-        
-        
-
         /// ПРОЧИЕ ФУНКЦИИ
         
         private static bool Admin_Check() // АДМИН-ПРИВЕЛЕГИИ
