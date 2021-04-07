@@ -10,7 +10,6 @@ using System.Security;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-
 namespace ConsoleApp8
 {
     class Program
@@ -96,8 +95,8 @@ namespace ConsoleApp8
             do{
                 Console.Clear();
                 admin_changed = false;
-                GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
-                YellowText("Войти в систему?\n\n1.Войти\n0.Завыршить работу\n\n");
+                ColorTextOut.GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
+                ColorTextOut.YellowText("Войти в систему?\n\n1.Войти\n0.Завыршить работу\n\n");
                 Choise_Login = ReadOnlyInt(0, 1);    
                 switch(Choise_Login)
                 {
@@ -106,15 +105,15 @@ namespace ConsoleApp8
                             try
                             {
                                 Console.Clear();
-                                GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
-                                YellowText("Вход в систему\n\n");
+                                ColorTextOut.GreenText("Генерация кораблей стоящих в порту и их динамическое хранение \nв виде кортежей, списков и обобщенных коллекций\n\n");
+                                ColorTextOut.YellowText("Вход в систему\n\n");
                                 FileStream fs = new FileStream("Users.txt", FileMode.Open);
                                 BinaryFormatter formatter = new BinaryFormatter();
                                 Users user = (Users)formatter.Deserialize(fs);
                                 fs.Close();
-                                CyanText("Пользователь: ");
+                                ColorTextOut.CyanText("Пользователь: ");
                                 string _login = GetLogin();
-                                CyanText("Пароль: ");
+                                ColorTextOut.CyanText("Пароль: ");
                                 string _password = GetPassword();
                                 for (int i = 0; i < user.Logins.Count; i++) // Ищем пользователя и проверяем правильность пароля.
                                 {
@@ -137,19 +136,19 @@ namespace ConsoleApp8
                                     }
                                     else if (user.Logins[i] == _login & _password != user.Passwords[i])
                                     {
-                                        RedText("\nНеверный пароль!\n");
+                                        ColorTextOut.RedText("\nНеверный пароль!\n");
                                         int Counter_Wrong_Pass = 0;
                                         while (_password != user.Passwords[i])
                                         {
-                                            CyanText("Пароль: ");
+                                            ColorTextOut.CyanText("Пароль: ");
                                             _password = GetPassword();
                                             if (_password != user.Passwords[i])
                                             {
-                                                RedText("\nНеверный пароль!\n");
+                                                ColorTextOut.RedText("\nНеверный пароль!\n");
                                                 Counter_Wrong_Pass++;
                                                 if(Counter_Wrong_Pass==3)
                                                 {
-                                                    RedText("\nВы ввели пароль неверно более 3 раз\nДля продолдения нажмите любую клавишу...");
+                                                    ColorTextOut.RedText("\nВы ввели пароль неверно более 3 раз\nДля продолдения нажмите любую клавишу...");
                                                     Logs.InvalidPass(_login);
                                                     Console.ReadKey();
                                                     break;
@@ -175,7 +174,7 @@ namespace ConsoleApp8
                                     else if (i == user.Logins.Count - 1)
                                     {
                                         Console.WriteLine();
-                                        RedText("Пользователь " + _login + " не найден!\nДля продолжения нажмите любую клавишу...");
+                                        ColorTextOut.RedText("Пользователь " + _login + " не найден!\nДля продолжения нажмите любую клавишу...");
                                         Console.ReadKey();
                                     }
 
@@ -200,8 +199,8 @@ namespace ConsoleApp8
             do
             {
                 Console.Clear();
-                GreenText("Генерация кораблей стоящих в порту и их динамическое хранение\nв виде кортежей, списков и обобщенных коллекций\n\n");
-                DarkCyanText("Системное меню:\n1.Выполнение программы\n2.Управление пользователями\n0.Выход\n\n");
+                ColorTextOut.GreenText("Генерация кораблей стоящих в порту и их динамическое хранение\nв виде кортежей, списков и обобщенных коллекций\n\n");
+                ColorTextOut.DarkCyanText("Системное меню:\n1.Выполнение программы\n2.Управление пользователями\n0.Выход\n\n");
                 Choise_System = ReadOnlyInt(0, 2);
                 switch (Choise_System)
                 {
@@ -237,7 +236,7 @@ namespace ConsoleApp8
                 int Choise_0;
                 do
                 {
-                    GreenText("11 Лабораторная");
+                    ColorTextOut.GreenText("11 Лабораторная");
                     Console.WriteLine();
                     Console.WriteLine();
                     Console.WriteLine("Главное Меню:\n 1. Работа со Stack (Стек)\n 2. Работа с List<T> (Кортеж)\n 3. Работа с MySortedDictionary<T> (Обобщенная коллекция)\n 0. Выход\n");
@@ -264,7 +263,7 @@ namespace ConsoleApp8
                                 int Choise_1;
                                 do
                                 {
-                                    GreenText("1 Задание 11 Лабораторной");
+                                    ColorTextOut.GreenText("1 Задание 11 Лабораторной");
                                     Console.WriteLine();
                                     Console.WriteLine();
                                     Console.WriteLine("Второстепенное Меню:\n 1. Добавление объекта в словарь\n 2. Удаление объекта из словарь\n 3. Печать всех элементов в списке\n 4. Количество созданных объектов типа \"Корвет\"\n 5. Количество созданных объектов типа \"Пароход\"\n 6. Вывести на экран все объекты типа \"Парусник\" \n 0. Выход");
@@ -276,7 +275,7 @@ namespace ConsoleApp8
                                         case 1:
                                             {
                                                 Console.Clear();
-                                                GreenText("1 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("1 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 int Choise_Add_Ships;
@@ -289,7 +288,7 @@ namespace ConsoleApp8
                                                         case 1:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -304,7 +303,7 @@ namespace ConsoleApp8
                                                                 d = ReadOnlyInt(0, 1000);
                                                                 Pringles_Ships.Push(new Class_Steamboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
-                                                                GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 Console.ReadKey();
                                                                 Console.Clear();
                                                                 break;
@@ -312,7 +311,7 @@ namespace ConsoleApp8
                                                         case 2:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -327,7 +326,7 @@ namespace ConsoleApp8
                                                                 d = ReadOnlyInt(0, 1000);
                                                                 Pringles_Ships.Push(new Class_Sailboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
-                                                                GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 Console.ReadKey();
                                                                 Console.Clear();
                                                                 break;
@@ -335,7 +334,7 @@ namespace ConsoleApp8
                                                         case 3:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -352,7 +351,7 @@ namespace ConsoleApp8
                                                                 e = ReadOnlyInt(0, 1000);
                                                                 Pringles_Ships.Push(new Class_Corvette_Ships(a, b, c, d, e));
                                                                 Console.WriteLine();
-                                                                GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 Console.ReadKey();
                                                                 Console.Clear();
                                                                 break;
@@ -366,18 +365,18 @@ namespace ConsoleApp8
                                         case 2:
                                             {
                                                 Console.Clear();
-                                                GreenText("1 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("1 Задание 11 Лабораторной");
                                                 Counter_Stack = Pringles_Ships.Count();
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 if (Counter_Stack > 0)
                                                 {
                                                     Pringles_Ships.Pop();
-                                                    GreenText("Эдемент Удален\n\nДля продолжения нажмите любую кнопку...");
+                                                    ColorTextOut.GreenText("Эдемент Удален\n\nДля продолжения нажмите любую кнопку...");
                                                 }
                                                 else
                                                 {
-                                                    GreenText("В Словаре нет элементов!!!\n\nДля продолжения нажмите любую кнопку...");
+                                                    ColorTextOut.GreenText("В Словаре нет элементов!!!\n\nДля продолжения нажмите любую кнопку...");
                                                 }
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -386,7 +385,7 @@ namespace ConsoleApp8
                                         case 3:
                                             {
                                                 Console.Clear();
-                                                GreenText("1 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("1 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 Counter_Stack = Pringles_Ships.Count();
@@ -396,11 +395,11 @@ namespace ConsoleApp8
                                                     {
                                                         i.Show();
                                                     }
-                                                    GreenText("Для продолжения нажмите любую кнопку...");
+                                                    ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
                                                 }
                                                 else
                                                 {
-                                                    GreenText("В Словаре нет элементов!!!\n\nДля продолжения нажмите любую кнопку...");
+                                                    ColorTextOut.GreenText("В Словаре нет элементов!!!\n\nДля продолжения нажмите любую кнопку...");
                                                 }
 
                                                 Console.ReadKey();
@@ -410,13 +409,13 @@ namespace ConsoleApp8
                                         case 4:
                                             {
                                                 Console.Clear();
-                                                GreenText("1 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("1 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 Class_Corvette_Ships.Numb_Of_Corvette();
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
                                                 Console.ReadKey();
                                                 Console.Clear();
                                                 break;
@@ -424,7 +423,7 @@ namespace ConsoleApp8
                                         case 5:
                                             {
                                                 Console.Clear();
-                                                GreenText("1 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("1 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 int Counter_For_Steamboat = 0;
@@ -436,7 +435,7 @@ namespace ConsoleApp8
                                                 Console.WriteLine("Количество имеющихся объектов типа \"Пароход\" в списке: " + Counter_For_Steamboat);
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -445,7 +444,7 @@ namespace ConsoleApp8
                                         case 6:
                                             {
                                                 Console.Clear();
-                                                GreenText("1 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("1 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 foreach (Class_Ships i in Pringles_Ships)
@@ -454,7 +453,7 @@ namespace ConsoleApp8
                                                         i.Show();
                                                 }
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -488,7 +487,7 @@ namespace ConsoleApp8
                                 int Choise_2;
                                 do
                                 {
-                                    GreenText("2 Задание 11 Лабораторной");
+                                    ColorTextOut.GreenText("2 Задание 11 Лабораторной");
                                     Console.WriteLine();
                                     Console.WriteLine();
                                     Console.WriteLine("Второстепенное Меню:\n 1. Добавление объекта в словарь\n 2. Удаление объектов с заданным именем из словаря\n 3. Вывод всех элементов словаря\n 4. Количество созданных объектов типа \"Корвет\"\n 5. Количество созданных объектов типа \"Пароход\"\n 6. Вывести на экран все объекты типа \"Парусник\" \n 0. Выход");
@@ -500,7 +499,7 @@ namespace ConsoleApp8
                                         case 1:
                                             {
                                                 Console.Clear();
-                                                GreenText("2 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("2 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 int Choise_Add_Ships;
@@ -513,7 +512,7 @@ namespace ConsoleApp8
                                                         case 1:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -528,7 +527,7 @@ namespace ConsoleApp8
                                                                 d = ReadOnlyInt(0, 1000);
                                                                 Convoy_Ships.Add(new Class_Steamboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
-                                                                GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 Console.ReadKey();
                                                                 Console.Clear();
                                                                 break;
@@ -536,7 +535,7 @@ namespace ConsoleApp8
                                                         case 2:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -551,7 +550,7 @@ namespace ConsoleApp8
                                                                 d = ReadOnlyInt(0, 1000);
                                                                 Convoy_Ships.Add(new Class_Sailboat_Ships(a, b, c, d));
                                                                 Console.WriteLine();
-                                                                GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 Console.ReadKey();
                                                                 Console.Clear();
                                                                 break;
@@ -559,7 +558,7 @@ namespace ConsoleApp8
                                                         case 3:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -576,7 +575,7 @@ namespace ConsoleApp8
                                                                 e = ReadOnlyInt(0, 1000);
                                                                 Convoy_Ships.Add(new Class_Corvette_Ships(a, b, c, d, e));
                                                                 Console.WriteLine();
-                                                                GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 Console.ReadKey();
                                                                 Console.Clear();
                                                                 break;
@@ -590,7 +589,7 @@ namespace ConsoleApp8
                                         case 2:
                                             {
                                                 Console.Clear();
-                                                GreenText("2 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("2 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 int Counter_Of_Deletes = 0;
@@ -619,7 +618,7 @@ namespace ConsoleApp8
                                                 }
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -628,7 +627,7 @@ namespace ConsoleApp8
                                         case 3:
                                             {
                                                 Console.Clear();
-                                                GreenText("2 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("2 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 Counter_Stack = Convoy_Ships.Count();
@@ -638,11 +637,11 @@ namespace ConsoleApp8
                                                     {
                                                         i.Show();
                                                     }
-                                                    GreenText("Для продолжения нажмите любую кнопку...");
+                                                    ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
                                                 }
                                                 else
                                                 {
-                                                    GreenText("В Словаре нет элементов!!!\n\nДля продолжения нажмите любую кнопку...");
+                                                    ColorTextOut.GreenText("В Словаре нет элементов!!!\n\nДля продолжения нажмите любую кнопку...");
                                                 }
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -651,13 +650,13 @@ namespace ConsoleApp8
                                         case 4:
                                             {
                                                 Console.Clear();
-                                                GreenText("2 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("2 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 Class_Corvette_Ships.Numb_Of_Corvette();
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -666,7 +665,7 @@ namespace ConsoleApp8
                                         case 5:
                                             {
                                                 Console.Clear();
-                                                GreenText("2 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("2 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 int Counter_For_Steamboat = 0;
@@ -680,7 +679,7 @@ namespace ConsoleApp8
                                                 Console.WriteLine("Количество имеющихся объектов типа \"Пароход\" в списке: " + Counter_For_Steamboat);
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -689,7 +688,7 @@ namespace ConsoleApp8
                                         case 6:
                                             {
                                                 Console.Clear();
-                                                GreenText("2 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("2 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 foreach (Class_Ships i in Convoy_Ships)
@@ -698,7 +697,7 @@ namespace ConsoleApp8
                                                         i.Show();
                                                 }
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -735,7 +734,7 @@ namespace ConsoleApp8
 
                                 ///
 
-                                GreenText("3 Задание  11 Лабораторной");
+                                ColorTextOut.GreenText("3 Задание  11 Лабораторной");
                                 Console.WriteLine();
                                 Console.WriteLine();
                                 int Choise_3;
@@ -750,7 +749,7 @@ namespace ConsoleApp8
                                         case 1:
                                             {
                                                 Console.Clear();
-                                                GreenText("3 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("3 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 int Choise_Add_Ships;
@@ -763,7 +762,7 @@ namespace ConsoleApp8
                                                         case 1:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -782,11 +781,11 @@ namespace ConsoleApp8
                                                                     d = ReadOnlyInt(0, 1000);
                                                                     Key_Value_Ships.Add(Booler, new Class_Sailboat_Ships(a, b, c, d));
                                                                     Console.WriteLine();
-                                                                    GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                    ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 }
                                                                 else
                                                                 {
-                                                                    GreenText("Корабль не создан - такой ключ уже существует.\n\nДля продолжения нажмите любую кнопку...");
+                                                                    ColorTextOut.GreenText("Корабль не создан - такой ключ уже существует.\n\nДля продолжения нажмите любую кнопку...");
                                                                 }
                                                                 Console.ReadKey();
                                                                 Console.Clear();
@@ -795,7 +794,7 @@ namespace ConsoleApp8
                                                         case 2:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -814,11 +813,11 @@ namespace ConsoleApp8
                                                                     d = ReadOnlyInt(0, 1000);
                                                                     Key_Value_Ships.Add(Booler, new Class_Steamboat_Ships(a, b, c, d));
                                                                     Console.WriteLine();
-                                                                    GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                    ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 }
                                                                 else
                                                                 {
-                                                                    GreenText("Корабль не создан - такой ключ уже существует.\n\nДля продолжения нажмите любую кнопку...");
+                                                                    ColorTextOut.GreenText("Корабль не создан - такой ключ уже существует.\n\nДля продолжения нажмите любую кнопку...");
                                                                 }
                                                                 Console.ReadKey();
                                                                 Console.Clear();
@@ -827,7 +826,7 @@ namespace ConsoleApp8
                                                         case 3:
                                                             {
                                                                 Console.Clear();
-                                                                GreenText("Добавление элемента");
+                                                                ColorTextOut.GreenText("Добавление элемента");
                                                                 Console.WriteLine();
                                                                 Console.WriteLine();
                                                                 string a;
@@ -848,11 +847,11 @@ namespace ConsoleApp8
                                                                     e = ReadOnlyInt(0, 1000);
                                                                     Key_Value_Ships.Add(Buf, new Class_Corvette_Ships(a, b, c, d, e));
                                                                     Console.WriteLine();
-                                                                    GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
+                                                                    ColorTextOut.GreenText("Корабль создан.\n\nДля продолжения нажмите любую кнопку...");
                                                                 }
                                                                 else
                                                                 {
-                                                                    GreenText("Корабль не создан - такой ключ уже существует.\n\nДля продолжения нажмите любую кнопку...");
+                                                                    ColorTextOut.GreenText("Корабль не создан - такой ключ уже существует.\n\nДля продолжения нажмите любую кнопку...");
                                                                 }
                                                                 Console.ReadKey();
                                                                 Console.Clear();
@@ -867,7 +866,7 @@ namespace ConsoleApp8
                                         case 2:
                                             {
                                                 Console.Clear();
-                                                GreenText("3 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("3 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 int Deleter = ReadOnlyInt(0, 1000);
@@ -883,7 +882,7 @@ namespace ConsoleApp8
                                                     Console.WriteLine();
                                                 }
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -892,7 +891,7 @@ namespace ConsoleApp8
                                         case 3:
                                             {
                                                 Console.Clear();
-                                                GreenText("3 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("3 Задание 11 Лабораторной");
                                                 var enumerator = Key_Value_Ships.GetEnumerator();
                                                 while (enumerator.MoveNext())
                                                 {
@@ -918,7 +917,7 @@ namespace ConsoleApp8
                                                 //
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
                                                 Console.ReadKey();
                                                 Console.Clear();
                                                 break;
@@ -926,7 +925,7 @@ namespace ConsoleApp8
                                         case 4:
                                             {
                                                 Console.Clear();
-                                                GreenText("3 Задание 11 Лабораторной");
+                                                ColorTextOut.GreenText("3 Задание 11 Лабораторной");
                                                 Console.WriteLine();
                                                 Console.WriteLine();
                                                 MySortedDictionary<int, Class_Ships> Clone = Key_Value_Ships.Clone();
@@ -952,7 +951,7 @@ namespace ConsoleApp8
                                                 }
                                                 Console.WriteLine();
                                                 Console.WriteLine();
-                                                GreenText("Для продолжения нажмите любую кнопку...");
+                                                ColorTextOut.GreenText("Для продолжения нажмите любую кнопку...");
 
                                                 Console.ReadKey();
                                                 Console.Clear();
@@ -977,8 +976,8 @@ namespace ConsoleApp8
             do
             {
                 Console.Clear();
-                GreenText("Выбор действий над пользователем\n\n");
-                DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Добавление пользователя\n3.Удаление пользователя\n4.Просмотр логов пользователей\n5.Передача прав администрара\n0.Выход\n\n");
+                ColorTextOut.GreenText("Выбор действий над пользователем\n\n");
+                ColorTextOut.DarkCyanText("Системное меню:\n1.Показать пользователей\n2.Добавление пользователя\n3.Удаление пользователя\n4.Просмотр логов пользователей\n5.Передача прав администрара\n0.Выход\n\n");
                 Choise_System_Config = ReadOnlyInt(0, 5);
                 switch (Choise_System_Config)
                 {
@@ -1039,7 +1038,7 @@ namespace ConsoleApp8
         
         private static void ShowUsers() // ПОКАЗ / ПОДСЧЁТ ПОЛЬЗОВАТЕЛЕЙ
         {
-            GreenText("Показ пльзователей\n\n");
+            ColorTextOut.GreenText("Показ пльзователей\n\n");
             try
             {
 
@@ -1047,17 +1046,17 @@ namespace ConsoleApp8
                 BinaryFormatter formatter = new BinaryFormatter();
                 Users user = (Users)formatter.Deserialize(fs);
 
-                DarkCyanText("Количество пользователей: ");
-                RedText(user.Logins.Count + "\n\n");
+                ColorTextOut.DarkCyanText("Количество пользователей: ");
+                ColorTextOut.RedText(user.Logins.Count + "\n\n");
 
                 fs.Close();
                 for (int i = 0; i < user.Logins.Count; i++) // Ищем пользователя и проверяем правильность пароля.
                 {
                     Console.Write("Пользователь [" + i + "]: ");
-                    CyanText(user.Logins[i]);
+                    ColorTextOut.CyanText(user.Logins[i]);
                     if (i == 0)
                     {
-                        RedText("\t{Admin} ");
+                        ColorTextOut.RedText("\t{Admin} ");
                         Console.WriteLine();
                     }
                     else
@@ -1068,7 +1067,7 @@ namespace ConsoleApp8
                 Console.WriteLine();
             }
             catch { Console.WriteLine("Данных нет"); }
-            DarkCyanText("Для подолжения нажмите любую клавишу...");
+            ColorTextOut.DarkCyanText("Для подолжения нажмите любую клавишу...");
         }
         private static void AddUser() // ДОБАВЛЕНИЕ ПОЛЬЗОВАТЕЛЯ
         {
@@ -1088,8 +1087,8 @@ namespace ConsoleApp8
                     user = new Users();
                 }
                 bool login_absent = true;
-                GreenText("Добавление нового пользователя\n\n");
-                CyanText("Пользователь: ");
+                ColorTextOut.GreenText("Добавление нового пользователя\n\n");
+                ColorTextOut.CyanText("Пользователь: ");
                 string _login = GetLogin();
                 for (int i = 0; i < user.Logins.Count; i++)
                 {
@@ -1101,7 +1100,7 @@ namespace ConsoleApp8
                 }
                 if (login_absent)
                 {
-                    CyanText("Пароль Пользователя: ");
+                    ColorTextOut.CyanText("Пароль Пользователя: ");
                     string _password = GetPassword();
                     if (_login == "" || _password == "") { Console.WriteLine("Не введен логин или пароль!"); }
                     else
@@ -1112,12 +1111,12 @@ namespace ConsoleApp8
                         formatter = new BinaryFormatter();
                         formatter.Serialize(fs, user); // Сериализуем класс.
                         Logs.AddUser(_login);
-                        DarkCyanText("\nПользователь Добавлен! Для продолжения нажмите любую клавишу...");
+                        ColorTextOut.DarkCyanText("\nПользователь Добавлен! Для продолжения нажмите любую клавишу...");
                     }
                 }
                 else
                 {
-                    DarkCyanText("\nТакой пользователь уже существует!\nДля продолжения нажмите любую клавишу...");
+                    ColorTextOut.DarkCyanText("\nТакой пользователь уже существует!\nДля продолжения нажмите любую клавишу...");
                 }
                 fs.Close();
             }
@@ -1127,25 +1126,25 @@ namespace ConsoleApp8
         {
             if (Admin_Check())
             {
-                GreenText("Удаление пользователя\n\n");
+                ColorTextOut.GreenText("Удаление пользователя\n\n");
                 FileStream fs = new FileStream("Users.txt", FileMode.Open);
                 BinaryFormatter formatter = new BinaryFormatter();
                 Users user = (Users)formatter.Deserialize(fs);
                 if (user.Logins.Count == 1)
                 {
-                    DarkRedText("Единственный пользователь не может быть удалён!\nДля прододжения нажмите любую клавишу...");
+                    ColorTextOut.DarkRedText("Единственный пользователь не может быть удалён!\nДля прододжения нажмите любую клавишу...");
                 }
                 else
                 {
-                    CyanText("Пользователь: ");
+                    ColorTextOut.CyanText("Пользователь: ");
                     string _login = GetLogin();
-                    CyanText("Пароль Пользователя: ");
+                    ColorTextOut.CyanText("Пароль Пользователя: ");
                     string _password = GetPassword();
                     if (current_login == _login && current_password == _password)
                     {
                         int Choise_Delete;
-                        RedText("\nВы уверены что хотите удалить Администатора?\nВ данном случае система перезапустится и роль администатора перейдёт следующему по спику пользователю\n\n");
-                        CyanText("1.Да\n2.Нет\n\n");
+                        ColorTextOut.RedText("\nВы уверены что хотите удалить Администатора?\nВ данном случае система перезапустится и роль администатора перейдёт следующему по спику пользователю\n\n");
+                        ColorTextOut.CyanText("1.Да\n2.Нет\n\n");
                         Choise_Delete = ReadOnlyInt(1, 2);
                         switch (Choise_Delete)
                         {
@@ -1156,12 +1155,12 @@ namespace ConsoleApp8
                                     user.Logins.Remove(_login);
                                     user.Passwords.Remove(_password);
                                     formatter.Serialize(fs, user); // Сериализуем класс.
-                                    DarkCyanText("\nУчётная запись Администратора удалёна! Данная роль перешла следующему по списку пользователю!\nДля продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkCyanText("\nУчётная запись Администратора удалёна! Данная роль перешла следующему по списку пользователю!\nДля продолжения нажмите любую клавишу...");
                                     break;
                                 }
                             case 2:
                                 {
-                                    DarkCyanText("\nУчётная запись администратора не удалена!\n Для продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkCyanText("\nУчётная запись администратора не удалена!\n Для продолжения нажмите любую клавишу...");
                                     break;
                                 }
                         }
@@ -1183,7 +1182,7 @@ namespace ConsoleApp8
                                 }
                                 if (user_absent == true)
                                 {
-                                    DarkRedText("\nПользователь или пароль не верны! Для продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkRedText("\nПользователь или пароль не верны! Для продолжения нажмите любую клавишу...");
                                 }
                                 else
                                 {
@@ -1192,12 +1191,12 @@ namespace ConsoleApp8
                                     user.Passwords.Remove(_password);
                                     formatter.Serialize(fs, user); // Сериализуем класс.
                                     Logs.DeleteUser(_login);
-                                    DarkCyanText("\nПользователь удалён! Для продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkCyanText("\nПользователь удалён! Для продолжения нажмите любую клавишу...");
                                 }
                             }
                             catch
                             {
-                                DarkRedText("\nПользователь не навйлен! Для продолжения нажмите любую клавишу...");
+                                ColorTextOut.DarkRedText("\nПользователь не навйлен! Для продолжения нажмите любую клавишу...");
                             }
                         }
                     }
@@ -1209,38 +1208,38 @@ namespace ConsoleApp8
         {
             if (Admin_Check())
             {
-                GreenText("Показ логов пользователей\n\n");
+                ColorTextOut.GreenText("Показ логов пользователей\n\n");
                 Decrypt("LOGS.txt");
                 FileStream stream = new FileStream("LOGS.txt", FileMode.OpenOrCreate);
                 StreamReader reader = new StreamReader(stream);
                 string str = reader.ReadToEnd();
                 stream.Close();
                 Crypt("LOGS.txt");
-                CyanText(str + "\n\n");
-                DarkCyanText("Для продолжения нажмите любую клавишу...");
+                ColorTextOut.CyanText(str + "\n\n");
+                ColorTextOut.DarkCyanText("Для продолжения нажмите любую клавишу...");
             }
         }
         private static void AdminRightsTransfer() // ПЕРЕДАЧА ПРАВ
         {
             if (Admin_Check())
             {
-                GreenText("Передача прав Администрора\n\n");
+                ColorTextOut.GreenText("Передача прав Администрора\n\n");
                 FileStream fs = new FileStream("Users.txt", FileMode.Open);
                 BinaryFormatter formatter = new BinaryFormatter();
                 Users user = (Users)formatter.Deserialize(fs);
                 if (user.Logins.Count == 1)
                 {
-                    DarkRedText("Единственный пользователь не может передать права!\nДля прододжения нажмите любую клавишу...");
+                    ColorTextOut.DarkRedText("Единственный пользователь не может передать права!\nДля прододжения нажмите любую клавишу...");
                 }
                 else
                 {
-                    CyanText("Пользователь: ");
+                    ColorTextOut.CyanText("Пользователь: ");
                     string _login = GetLogin();
-                    CyanText("Пароль Пользователя: ");
+                    ColorTextOut.CyanText("Пароль Пользователя: ");
                     string _password = GetPassword();
                     if (current_login == _login && current_password == _password)
                     {
-                        RedText("\nВы уже являетесь администратором\nДля прододжения нажмите любую клавишу...");
+                        ColorTextOut.RedText("\nВы уже являетесь администратором\nДля прододжения нажмите любую клавишу...");
                     }
                     else
                     {
@@ -1260,7 +1259,7 @@ namespace ConsoleApp8
                                 }
                                 if (user_absent == true)
                                 {
-                                    DarkRedText("\nЛогин пользователя или пароль не верны! Для продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkRedText("\nЛогин пользователя или пароль не верны! Для продолжения нажмите любую клавишу...");
                                 }
                                 else
                                 {
@@ -1271,12 +1270,12 @@ namespace ConsoleApp8
                                     user.Passwords[NewAdmin] = current_password;
                                     formatter.Serialize(fs, user); // Сериализуем класс.
                                     Logs.TransferRights(_login, current_login);
-                                    DarkCyanText("\nПрава Переданы! Для продолжения нажмите любую клавишу...");
+                                    ColorTextOut.DarkCyanText("\nПрава Переданы! Для продолжения нажмите любую клавишу...");
                                 }
                             }
                             catch
                             {
-                                DarkRedText("\nПользователь не навйлен! Для продолжения нажмите любую клавишу...");
+                                ColorTextOut.DarkRedText("\nПользователь не навйлен! Для продолжения нажмите любую клавишу...");
                             }
                         }
                     }
@@ -1294,7 +1293,7 @@ namespace ConsoleApp8
             ConsoleKeyInfo key;
             do
             {
-                CyanText("Введите значение: ");
+                ColorTextOut.CyanText("Введите значение: ");
                 string buf="";
                 
                 do
@@ -1306,11 +1305,11 @@ namespace ConsoleApp8
                     {
                         // Append the character to the password.
                         buf += key.KeyChar;
-                        DarkCyanText(key.KeyChar.ToString());
+                        ColorTextOut.DarkCyanText(key.KeyChar.ToString());
                     }
                     if (buf.Length > 5)
                     {
-                        RedText("\t\t(допустимый разер не больше 5 символов)");
+                        ColorTextOut.RedText("\t\t(допустимый разер не больше 5 символов)");
                         break;
                     }
                     // Exit if Enter key is pressed.
@@ -1327,8 +1326,8 @@ namespace ConsoleApp8
                 }
                 if (ok == false)
                 {
-                    DarkRedText("\nОшибка: ");
-                    RedText("Значение не правильно!!!");
+                    ColorTextOut.DarkRedText("\nОшибка: ");
+                    ColorTextOut.RedText("Значение не правильно!!!");
                     Console.WriteLine();
                     Console.WriteLine();
                 }
@@ -1348,11 +1347,11 @@ namespace ConsoleApp8
                 {
                     // Append the character to the password.
                     Loggin += key.KeyChar;
-                    DarkCyanText(key.KeyChar.ToString());
+                    ColorTextOut.DarkCyanText(key.KeyChar.ToString());
                 }
                 if(Loggin.Length>15)
                 {
-                    RedText("\t\t(допустимый разер логина не больше 15 символов)");
+                    ColorTextOut.RedText("\t\t(допустимый разер логина не больше 15 символов)");
                     break;
                 }
                 // Exit if Enter key is pressed.
@@ -1373,11 +1372,11 @@ namespace ConsoleApp8
                 {
                     // Append the character to the password.
                     Password += key.KeyChar;
-                    DarkCyanText("*");
+                    ColorTextOut.DarkCyanText("*");
                 }
                 if (Password.Length > 15)
                 {
-                    RedText("\t\t(допустимый разер пароля не больше 15 символов)");
+                    ColorTextOut.RedText("\t\t(допустимый разер пароля не больше 15 символов)");
                     break;
                 }
                 // Exit if Enter key is pressed.
@@ -1390,42 +1389,7 @@ namespace ConsoleApp8
 
         /// ФУНКЦИИ ВСПОМОГАТЕЛЬНЫЕ (ВЫВОД)
         
-        static void DarkRedText(string str) // ТЁМНО-КРАСНЫЙ ВЫВОД
-        {
-            Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.Write(str);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-        }
-        static void RedText(string str) // КРАСНВЫЙ ВЫВОД
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(str);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-        }
-        static void DarkCyanText(string str) // ТЁМНО-ЦИАНОВЫЙ ВЫВОД
-        {
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-            Console.Write(str);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-        }
-        static void CyanText(string str) // ЦИАНОВЫЙ ВЫВОД
-        {
-            Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.Write(str);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-        }
-        static void YellowText(string str) // ЖЁЛТЫЙ ВЫВОД
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write(str);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-        }
-        static void GreenText(string str) // ЗЕЛЁНЫЙ ВЫВОД
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(str);
-            Console.ForegroundColor = ConsoleColor.DarkCyan;
-        }
+        
 
         /// ПРОЧИЕ ФУНКЦИИ
         
@@ -1443,13 +1407,13 @@ namespace ConsoleApp8
                 }
                 else
                 {
-                    RedText("Пользователь не является Администаратором и не может выполнить данное действие!\nДля продолжения нажмите любую клавишу...");
+                    ColorTextOut.RedText("Пользователь не является Администаратором и не может выполнить данное действие!\nДля продолжения нажмите любую клавишу...");
                     return false;
                 }
             }
             catch
             {
-                RedText("Неизвестная ошибка, возможно нет пользователей!\nДля продолжения нажмите любую клавишу...");
+                ColorTextOut.RedText("Неизвестная ошибка, возможно нет пользователей!\nДля продолжения нажмите любую клавишу...");
                 return false;
             }
         }
