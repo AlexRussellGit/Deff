@@ -29,6 +29,11 @@ namespace ConsoleApp8
                         buf += key.KeyChar;
                         ColorTextOut.DarkCyanText(key.KeyChar.ToString());
                     }
+                    if(((int)key.Key) == 8 && buf.Length != 0)
+                    {
+                        buf = buf.Remove(buf.Length - 1);
+                        ColorTextOut.DarkCyanText(key.KeyChar.ToString() + " " + key.KeyChar.ToString());
+                    }
                     if (buf.Length > 5)
                     {
                         ColorTextOut.RedText("\t\t(допустимый разер не больше 5 символов)");
