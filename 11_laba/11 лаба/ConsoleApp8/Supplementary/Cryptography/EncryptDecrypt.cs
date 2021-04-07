@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +16,7 @@ namespace ConsoleApp8
             StreamWriter sw = new StreamWriter(FileName);
             for (int k = 0; k < rf.Length; k++)
             {
-                Program.str = "";
+                string str = "";
                 int n2 = key.Count();
                 int n1;
                 if (rf[k].Length % n2 == 0) n1 = rf[k].Length / n2;
@@ -35,9 +35,9 @@ namespace ConsoleApp8
                 }
                 for (int i = 0; i < n2; i++)
                     for (int j = 0; j < n1; j++)
-                        Program.str += matr[j][key[i] - 1];
-                if (k == rf.Length - 1) sw.Write(Program.str);
-                else sw.WriteLine(Program.str);
+                        str += matr[j][key[i] - 1];
+                if (k == rf.Length - 1) sw.Write(str);
+                else sw.WriteLine(str);
             }
             sw.Close();
         }
@@ -48,7 +48,7 @@ namespace ConsoleApp8
             StreamWriter sw = new StreamWriter(FileName);
             for (int k = 0; k < rf.Length; k++)
             {
-                Program.str = "";
+                string str = "";
                 int n2 = key.Count();
                 int n1;
                 if (rf[k].Length % n2 == 0) n1 = rf[k].Length / n2;
@@ -69,10 +69,10 @@ namespace ConsoleApp8
                 }
                 for (int i = 0; i < n1; i++)
                     for (int j = 0; j < n2; j++)
-                        Program.str += matr[j][i];
-                Program.str = Program.str.TrimEnd(' ');
-                if (k == rf.Length - 1) sw.Write(Program.str);
-                else sw.WriteLine(Program.str);
+                        str += matr[j][i];
+                str =str.TrimEnd(' ');
+                if (k == rf.Length - 1) sw.Write(str);
+                else sw.WriteLine(str);
             }
             sw.Close();
         }
