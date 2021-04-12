@@ -36,8 +36,7 @@ namespace ConsoleApp8
                 for (int i = 0; i < n2; i++)
                     for (int j = 0; j < n1; j++)
                         str += matr[j][key[i] - 1];
-                if (k == rf.Length - 1) sw.Write(str);
-                else sw.WriteLine(str);
+                sw.WriteLine(str);
             }
             sw.Close();
         }
@@ -70,9 +69,8 @@ namespace ConsoleApp8
                 for (int i = 0; i < n1; i++)
                     for (int j = 0; j < n2; j++)
                         str += matr[j][i];
-                str =str.TrimEnd(' ');
-                if (k == rf.Length - 1) sw.Write(str);
-                else sw.WriteLine(str);
+                str = str.TrimEnd(' ');
+                sw.WriteLine(str);
             }
             sw.Close();
         }
