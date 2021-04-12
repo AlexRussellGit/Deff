@@ -15,7 +15,6 @@ namespace ConsoleApp8
             {
                 s += " {ADMIN}";
             }
-            s += "\n";
             EncryptDecrypt.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
@@ -31,7 +30,6 @@ namespace ConsoleApp8
             {
                 s += " {ADMIN}";
             }
-            s += "\n";
             EncryptDecrypt.Decrypt("LOGS.txt");
             System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
             writer.WriteLine(s);
