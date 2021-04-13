@@ -155,10 +155,11 @@ namespace ConsoleApp8
                     case 0:
                         {
                             Logs.LogOut(current_login, user_id);
+                            current_login = string.Empty;
                             break;
                         }
-
                 }
+
             } while (Choise_System != 0);
         }
         
@@ -222,6 +223,7 @@ namespace ConsoleApp8
         static void Main(string[] args)
         {
             {
+                Abort.CatchAbort(); // ЗАПИСЬ В ЛОГА В СЛУЧАЕ ЗАКРЫТИЯ ПРОГИ (Ctrl+C or Ctrl+Break)
                 SystemLogin();
             }
         }
