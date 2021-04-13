@@ -37,6 +37,21 @@ namespace ConsoleApp8
             EncryptDecrypt.Crypt("LOGS.txt");
         }
 
+        public static void LogOut(string login, int id, string str)
+        {
+            string s = "USER " + login + " LOGGED OUT" + str + " AT " + DateTime.Now;
+            if (id == 0)
+            {
+                s += " {ADMIN}";
+            }
+            EncryptDecrypt.Decrypt("LOGS.txt");
+            System.IO.StreamWriter writer = new System.IO.StreamWriter("LOGS.txt", true);
+            writer.WriteLine(s);
+            writer.Close();
+            EncryptDecrypt.Crypt("LOGS.txt");
+        }
+
+
         public static void AddUser(string login)
         {
             string s = "NEW USER " + login + " ADDED AT " + DateTime.Now + "\n";
